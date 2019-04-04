@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Router as BrowserRouter, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import { signIn, signOut } from '../actions';
 import history from '../history';
