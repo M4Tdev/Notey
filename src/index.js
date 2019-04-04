@@ -4,14 +4,14 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import reduxThunk from 'redux-thunk';
 
-import App from './components/App';
+import Router from './components/Router';
 import rootReducer from './reducers';
 
 const store = createStore(rootReducer, applyMiddleware(reduxThunk));
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Router />
   </Provider>,
   document.querySelector('#root')
 );
