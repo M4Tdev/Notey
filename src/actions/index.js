@@ -1,4 +1,6 @@
 import {
+  SIGN_IN,
+  SIGN_OUT,
   CREATE_NOTE,
   FETCH_NOTE,
   FETCH_NOTES,
@@ -6,6 +8,15 @@ import {
   DELETE_NOTE,
 } from './types';
 import notes from '../apis/notes';
+
+export const signIn = userId => ({
+  type: SIGN_IN,
+  payload: userId,
+});
+
+export const signOut = () => ({
+  type: SIGN_OUT,
+});
 
 export const createNote = formValues => async (dispatch, getState) => {
   const { userId } = getState().auth;
