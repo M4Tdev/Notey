@@ -41,11 +41,18 @@ const Router = props => {
 
   return (
     <BrowserRouter history={history}>
-      <Route path="/" exact component={Loader} />
-      <Route path="/login" exact component={Login} />
-      <Route path="/notes" exact component={App} />
+      <Switch>
+        <Route path="/" exact component={Loader} />
+        <Route path="/login" exact component={Login} />
+        <Route path="/notes" exact component={App} />
+      </Switch>
     </BrowserRouter>
   );
+};
+
+Router.propTypes = {
+  signIn: PropTypes.func.isRequired,
+  signOut: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
