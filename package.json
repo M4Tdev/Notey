@@ -28,7 +28,12 @@
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "wesbos"
+    "extends": "wesbos",
+    "rules": {
+      "react/prop-types": 1,
+      "react/destructuring-assignment": 1,
+      "no-shadow": 1
+    }
   },
   "browserslist": [
     ">0.2%",
