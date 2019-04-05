@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
 
-import '../css/loadingSpinner.css';
+import '../css/loadingSpinner.scss';
 
 const Container = styled.div`
   width: 100%;
