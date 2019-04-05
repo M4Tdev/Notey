@@ -1,6 +1,11 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import ModalLoader from './ModalLoader';
 
-const Login = props => <div>Login Page</div>;
+const Login = props => {
+  if (props.isSignedIn === null) {
+    return <ModalLoader />;
+  }
+  return <div>Login to Notey</div>;
+};
 
-export default connect(null)(Login);
+export default Login;

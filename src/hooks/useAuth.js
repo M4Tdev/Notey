@@ -13,7 +13,8 @@ export default (signIn, signOut) => {
         history.push('/notes');
       } else {
         await signOut();
-        history.push('/login');
+        history.push('/');
+        // show some kind of error/message
       }
     };
 
@@ -28,7 +29,6 @@ export default (signIn, signOut) => {
           auth = window.gapi.auth2.getAuthInstance();
           onAuthChange(auth.isSignedIn.get());
           auth.isSignedIn.listen(onAuthChange);
-					console.log('useAuth ran');
         });
     });
   }, []);
