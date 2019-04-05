@@ -3,12 +3,16 @@ import { Router as BrowserRouter, Switch, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+// imports associated with Redux
 import { signIn, signOut } from '../actions';
 import history from '../history';
 
+// Components
+import ModalLoader from './ModalLoader';
 import App from './App';
 import Login from './Login';
 
+// Hooks
 import useAuth from '../hooks/useAuth';
 
 const Router = ({ signIn, signOut, isSignedIn }) => {
@@ -17,6 +21,7 @@ const Router = ({ signIn, signOut, isSignedIn }) => {
   return (
     <BrowserRouter history={history}>
       <Switch>
+        <Route path="/" exact component={ModalLoader} />
         <Route
           path="/login"
           exact
