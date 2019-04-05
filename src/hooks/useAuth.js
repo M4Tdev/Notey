@@ -13,8 +13,7 @@ export default (signIn, signOut) => {
         history.push('/notes');
       } else {
         await signOut();
-        history.push('/');
-        // show some kind of error/message
+        history.push('/login');
       }
     };
 

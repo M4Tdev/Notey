@@ -6,6 +6,7 @@ import reduxThunk from 'redux-thunk';
 
 import Router from './components/Router';
 import rootReducer from './reducers';
+import GlobalStyles from './utils/globalStyles';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -16,6 +17,7 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
+    <GlobalStyles />
     <Router />
   </Provider>,
   document.querySelector('#root')

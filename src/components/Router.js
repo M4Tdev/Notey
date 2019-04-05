@@ -18,7 +18,7 @@ const Router = ({ signIn, signOut, isSignedIn }) => {
     <BrowserRouter history={history}>
       <Switch>
         <Route
-          path="/"
+          path="/login"
           exact
           render={props => <Login {...props} isSignedIn={isSignedIn} />}
         />
