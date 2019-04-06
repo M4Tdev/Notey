@@ -41,6 +41,10 @@ const GoogleIcon = styled(Google)`
   width: 30px;
 `;
 
+const onSignIn = () => {
+  window.gapi.auth2.getAuthInstance().signIn();
+};
+
 const Login = props => {
   if (props.isSignedIn === null) {
     return <ModalLoader />;
@@ -48,7 +52,7 @@ const Login = props => {
   return (
     <Container>
       <Heading>Notey</Heading>
-      <Button>
+      <Button onClick={onSignIn}>
         <GoogleIcon />
         Login with Google
       </Button>
