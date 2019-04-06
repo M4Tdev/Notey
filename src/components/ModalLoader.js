@@ -5,24 +5,16 @@ import styled from 'styled-components';
 import '../css/loadingSpinner.scss';
 
 const Container = styled.div`
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-`;
-
-const Logo = styled.h2`
-  letter-spacing: 10px;
-  color: rgba(91, 91, 91, 0.7);
-  font-family: 'Montserrat', sans-serif;
 `;
 
 const ModalLoader = () =>
   ReactDOM.createPortal(
     <Container>
-      <Logo>Notey</Logo>
       <div className="spinner">
         <div className="rect1" />
         <div className="rect2" />

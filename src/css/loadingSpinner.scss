@@ -1,7 +1,7 @@
 .spinner {
   margin: 100px auto;
-  width: 50px;
-  height: 40px;
+  width: 70px;
+  height: 60px;
   text-align: center;
   font-size: 10px;
 }
@@ -9,8 +9,9 @@
 .spinner > div {
   background-color: #333;
   height: 100%;
-  width: 6px;
+  width: 8px;
   display: inline-block;
+  margin: 0 1px;
 
   -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
   animation: sk-stretchdelay 1.2s infinite ease-in-out;
