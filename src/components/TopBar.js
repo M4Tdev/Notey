@@ -50,7 +50,7 @@ class TopBar extends React.Component {
         <Logo>Notey</Logo>
         <User>
           {this.props.userEmail}
-          <SignOutBtn onClick={this.onSignOut}>
+          <SignOutBtn onClick={this.props.onSignOut}>
             <SignOutIcon />
           </SignOutBtn>
         </User>

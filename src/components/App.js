@@ -30,7 +30,7 @@ class App extends React.Component {
     }
     return (
       <Container>
-        <TopBar userEmail={this.props.userEmail} />
+        <TopBar userEmail={this.props.userEmail} onSignOut={this.onSignOut} />
         <InnerContainer>
           <NotesList />
           <Editor />
