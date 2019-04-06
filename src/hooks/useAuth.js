@@ -9,7 +9,7 @@ export default (signIn, signOut) => {
 
     const onAuthChange = async isSignedIn => {
       if (isSignedIn) {
-        await signIn(auth.currentUser.get().getId());
+        await signIn(auth.currentUser.get().getId(), auth.currentUser.get().getBasicProfile().getEmail());
         history.push('/notes');
       } else {
         await signOut();

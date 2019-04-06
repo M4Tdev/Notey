@@ -9,9 +9,9 @@ import {
 } from './types';
 import notes from '../apis/notes';
 
-export const signIn = userId => ({
+export const signIn = (userId, userEmail) => ({
   type: SIGN_IN,
-  payload: userId,
+  payload: { userId, userEmail },
 });
 
 export const signOut = () => ({
