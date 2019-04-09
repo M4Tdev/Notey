@@ -10,36 +10,37 @@ const Container = styled.form`
 `;
 
 const Title = styled.input`
-  display: block;
-  margin: 50px auto 0;
+  display: inline-block;
+  margin: 5rem auto 0;
   width: 60%;
-  height: 45px;
-  padding: 5px 10px;
-  font-size: 20px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+  height: 4.5rem;
+  padding: 0.5rem 1rem;
+  font-size: 2rem;
+
   border: none;
-  border-radius: 5px;
+  border-left: 0.1rem solid rgba(0, 0, 0, 0.25);
+  border-bottom: 0.1rem solid rgba(0, 0, 0, 0.25);
 
   &::placeholder {
-    font-size: 18px;
+    font-size: 1.8rem;
     letter-spacing: 0.1em;
   }
 `;
 
 const Note = styled.textarea`
   display: block;
-  margin: 50px auto 0;
+  margin: 5rem auto 0;
   width: 60%;
-  min-height: 300px;
-  padding: 5px 10px;
-  font-size: 20px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.25);
+  min-height: 30rem;
+  padding: 0.5rem 1rem;
+  font-size: 2rem;
+  box-shadow: 0.15rem 1rem 2rem rgba(0, 0, 0, 0.25);
   border: none;
-  border-radius: 5px;
+  border-radius: 0.5rem;
   resize: vertical;
 
   &::placeholder {
-    font-size: 18px;
+    font-size: 1.8rem;
     letter-spacing: 0.1em;
   }
 `;
@@ -47,7 +48,7 @@ const Note = styled.textarea`
 const Buttons = styled.div`
   display: flex;
   width: 60%;
-  margin: 30px auto 10px;
+  margin: 3rem auto 1rem;
   flex-direction: row;
   justify-content: flex-start;
 `;

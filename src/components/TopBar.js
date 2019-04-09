@@ -4,17 +4,17 @@ import { SignOutAlt } from 'styled-icons/fa-solid';
 
 const Container = styled.div`
   width: 100vw;
-  height: 45px;
+  height: 4.5rem;
   background-color: #4285f4;
   color: white;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 45px;
+  grid-template-rows: 4.5rem;
   grid-template-areas: '. logo user';
 `;
 
 const Logo = styled.h1`
-  font-size: 28px;
+  font-size: 2.8rem;
   font-weight: bold;
   letter-spacing: 0.2em;
   grid-area: logo;
@@ -29,18 +29,18 @@ const User = styled.div`
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  margin: 0 15px 0 0;
+  margin: 0 1.5rem 0 0;
 `;
 
 const SignOutBtn = styled.button`
   background-color: transparent;
   border: none;
-  margin: 0 0 0 10px;
+  margin: 0 0 0 1rem;
 `;
 
 const SignOutIcon = styled(SignOutAlt)`
   color: white;
-  width: 30px;
+  width: 3rem;
 `;
 
 class TopBar extends React.Component {

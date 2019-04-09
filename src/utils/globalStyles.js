@@ -9,6 +9,14 @@ export default createGlobalStyle`
 		outline: none;
 	}
 
+	html {
+		font-size: 62.5%;
+	}
+
+	body {
+		font-size: 1rem;
+	}
+
 	button {
 		cursor: pointer;
 		outline: none;

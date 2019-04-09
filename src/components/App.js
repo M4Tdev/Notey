@@ -14,7 +14,7 @@ const Container = styled.div`
 `;
 
 const InnerContainer = styled.div`
-  height: calc(100% - 45px);
+  height: calc(100% - 4.5rem);
   display: flex;
   flex-direction: row;
 `;

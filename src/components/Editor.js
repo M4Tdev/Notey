@@ -6,7 +6,7 @@ import Form from './Form';
 
 const Container = styled.div`
   text-align: center;
-  width: calc(100% - 400px);
+  width: calc(100% - 40rem);
 `;
 
 class Editor extends React.Component {

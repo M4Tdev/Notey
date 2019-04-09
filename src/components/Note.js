@@ -2,10 +2,10 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Container = styled.li`
-  padding: 15px;
+  padding: 1.5rem;
   cursor: pointer;
-  border-top: 1px solid rgba(0, 0, 0, 0.3);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+  border-top: 0.1rem solid rgba(0, 0, 0, 0.3);
+  border-bottom: 0.1rem solid rgba(0, 0, 0, 0.3);
 
   &:hover {
     background-color: rgba(66, 133, 244, 0.2);

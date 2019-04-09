@@ -15,30 +15,30 @@ const Container = styled.div`
 
 const Heading = styled.h1`
   font-weight: bold;
-  font-size: 46px;
+  font-size: 4.6rem;
   letter-spacing: 0.2em;
   color: #5b5b5b;
 `;
 
 const Button = styled.button`
   background-color: #4285f4;
-  border-radius: 10px;
+  border-radius: 1rem;
   border: none;
   color: #fff;
-  padding: 15px 45px;
-  margin: 112px 0;
+  padding: 1.5rem 4.5rem;
+  margin: 11.2rem 0;
   position: relative;
   text-align: center;
   font-weight: 400;
-  font-size: 20px;
+  font-size: 2rem;
 `;
 
 const GoogleIcon = styled(Google)`
   position: absolute;
   top: 50%;
-  left: 10px;
+  left: 1rem;
   transform: translateY(-50%);
-  width: 30px;
+  width: 3rem;
 `;
 
 const onSignIn = () => {
