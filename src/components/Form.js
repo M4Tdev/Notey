@@ -15,7 +15,7 @@ const Title = styled.input`
   width: 60%;
   height: 4.5rem;
   padding: 0.5rem 1rem;
-  font-size: 2rem;
+  font-size: 1.8rem;
 
   border: none;
   border-left: 0.1rem solid rgba(0, 0, 0, 0.25);
@@ -33,8 +33,8 @@ const Note = styled.textarea`
   width: 60%;
   min-height: 30rem;
   padding: 0.5rem 1rem;
-  font-size: 2rem;
-  box-shadow: 0.15rem 1rem 2rem rgba(0, 0, 0, 0.25);
+  font-size: 1.8rem;
+  box-shadow: 0.15rem 0.5rem 1rem rgba(0, 0, 0, 0.25);
   border: none;
   border-radius: 0.5rem;
   resize: vertical;
