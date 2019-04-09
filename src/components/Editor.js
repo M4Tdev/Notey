@@ -1,6 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
 
+// Components
+import Form from './Form';
+
 const Container = styled.div`
   text-align: center;
   width: calc(100% - 400px);
@@ -8,7 +11,11 @@ const Container = styled.div`
 
 class Editor extends React.Component {
   render() {
-    return <Container>Editor</Container>;
+    return (
+      <Container>
+        <Form />
+      </Container>
+    );
   }
 }
 
