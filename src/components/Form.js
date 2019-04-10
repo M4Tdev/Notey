@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Field, reduxForm } from 'redux-form';
 
 // Components
 import Button from './Button';
@@ -54,11 +55,17 @@ const Buttons = styled.div`
 `;
 
 class Form extends React.Component {
+  onSubmit = formValues => {
+    this.props.onSubmit(formValues);
+  };
+
   render() {
     return (
-      <Container>
-        <Title type="text" placeholder="Title" name="title" />
-        <Note placeholder="Note" name="note" />
+      <Container onSubmit={this.props.handleSubmit(this.onSubmit)}>
+        {/* <Title type="text" placeholder="Title" name="title" /> */}
+        <Field name="title" component="input" type="text" />
+        {/* <Note placeholder="Note" name="note" /> */}
+        <Field name="note" component="textarea" />
         <Buttons>
           <Button btnType="submit" content="Save" bgColor="#4285F4" />
           <Button content="Delete" />
@@ -68,4 +75,6 @@ class Form extends React.Component {
   }
 }
 
-export default Form;
+export default reduxForm({
+  form: 'editor',
+})(Form);

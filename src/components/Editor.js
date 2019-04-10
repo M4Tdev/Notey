@@ -10,10 +10,14 @@ const Container = styled.div`
 `;
 
 class Editor extends React.Component {
+  onSubmit = formValues => {
+    console.log(formValues);
+  };
+
   render() {
     return (
       <Container>
-        <Form />
+        <Form onSubmit={this.onSubmit} />
       </Container>
     );
   }
