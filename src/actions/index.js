@@ -20,7 +20,7 @@ export const signOut = () => ({
 
 export const createNote = formValues => async (dispatch, getState) => {
   const { userId } = getState().auth;
-  const response = await notes.post(`/${userId}/notes/create`, {
+  const response = await notes.post(`/${userId}/notes`, {
     ...formValues,
   });
 
@@ -31,11 +31,21 @@ export const createNote = formValues => async (dispatch, getState) => {
 };
 
 export const fetchNote = id => async (dispatch, getState) => {
-  // const { userId } = getState().auth;
-  const response = await notes.get(`/abc123/notes/${id}`);
+  const { userId } = getState().auth;
+  const response = await notes.get(`/${userId}/notes/${id}`);
 
   dispatch({
     type: FETCH_NOTE,
+    payload: response.data,
+  });
+};
+
+export const fetchNotes = () => async (dispatch, getState) => {
+  const { userId } = getState().auth;
+  const response = await notes.get(`/${userId}/notes`);
+
+  dispatch({
+    type: FETCH_NOTES,
     payload: response.data,
   });
 };
