@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import _ from 'lodash';
 
 const Container = styled.li`
   padding: 1.5rem;
@@ -20,6 +21,22 @@ const Container = styled.li`
   }
 `;
 
-const Note = props => <Container>{props.children}</Container>;
+const Title = styled.h4`
+  font-size: 1.6rem;
+  font-weight: 500;
+`;
+
+const NoteContent = styled.p`
+  font-size: 1.4rem;
+  margin-left: 0.5rem;
+  font-weight: 400;
+`;
+
+const Note = props => (
+  <Container>
+    <Title>{props.noteTitle}</Title>
+    <NoteContent>{_.truncate(props.noteContent, { length: 100 })}</NoteContent>
+  </Container>
+);
 
 export default Note;

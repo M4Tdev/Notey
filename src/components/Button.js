@@ -26,7 +26,12 @@ const Container = styled.button`
 
 const Button = props => (
   <>
-    <Container bgColor={props.bgColor}>{props.content}</Container>
+    <Container
+      type={props.btnType === 'submit' ? 'submit' : 'button'}
+      bgColor={props.bgColor}
+    >
+      {props.content}
+    </Container>
   </>
 );
 
