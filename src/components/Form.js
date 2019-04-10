@@ -60,7 +60,7 @@ class Form extends React.Component {
         <Title type="text" placeholder="Title" name="title" />
         <Note placeholder="Note" name="note" />
         <Buttons>
-          <Button content="Save" bgColor="#4285F4" />
+          <Button btnType="submit" content="Save" bgColor="#4285F4" />
           <Button content="Delete" />
         </Buttons>
       </Container>
