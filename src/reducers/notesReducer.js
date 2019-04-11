@@ -7,10 +7,12 @@ import {
   DELETE_NOTE,
 } from '../actions/types';
 
-export default (state = {}, action) => {
+export default (state = { notes: {}, selectedNote: null }, action) => {
   switch (action.type) {
     case FETCH_NOTES:
-      return { ...state, ..._.mapKeys(action.payload, 'id') };
+      return { ...state, notes: { ..._.mapKeys(action.payload, 'id') } };
+    case FETCH_NOTE:
+      return { ...state, selectedNote: { ...action.payload } };
     default:
       return state;
   }
