@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import _ from 'lodash';
 
-import history from '../history';
-
 import { fetchNotes } from '../actions';
 
 // Components
@@ -56,7 +54,7 @@ class NotesList extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  notes: state.notes,
+  notes: state.notes.notes,
 });
 
 export default connect(

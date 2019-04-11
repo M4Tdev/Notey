@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import _ from 'lodash';
 
+import history from '../history';
+
 const Container = styled.li`
   padding: 1.5rem;
   cursor: pointer;
@@ -33,7 +35,7 @@ const NoteContent = styled.p`
 `;
 
 const Note = props => (
-  <Container>
+  <Container onClick={() => history.push(`/notes/${props.id}`)}>
     <Title>{props.noteTitle}</Title>
     <NoteContent>{_.truncate(props.noteContent, { length: 100 })}</NoteContent>
   </Container>
