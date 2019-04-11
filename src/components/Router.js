@@ -29,7 +29,6 @@ const Router = ({ signIn, signOut, isSignedIn }) => {
         />
         <Route
           path="/notes"
-          exact
           render={props => <App {...props} isSignedIn={isSignedIn} />}
         />
       </Switch>
