@@ -10,7 +10,10 @@ const Container = styled.form`
   /* height: 100%; */
 `;
 
-const Title = styled.input`
+const Title = styled(Field).attrs({
+  component: 'input',
+  placeholder: 'Title',
+})`
   display: inline-block;
   margin: 5rem auto 0;
   width: 60%;
@@ -28,7 +31,10 @@ const Title = styled.input`
   }
 `;
 
-const Note = styled.textarea`
+const Note = styled(Field).attrs({
+  component: 'textarea',
+  placeholder: 'Note',
+})`
   display: block;
   margin: 5rem auto 0;
   width: 60%;
@@ -62,10 +68,8 @@ class Form extends React.Component {
   render() {
     return (
       <Container onSubmit={this.props.handleSubmit(this.onSubmit)}>
-        {/* <Title type="text" placeholder="Title" name="title" /> */}
-        <Field name="title" component="input" type="text" />
-        {/* <Note placeholder="Note" name="note" /> */}
-        <Field name="note" component="textarea" />
+        <Title name="title" type="text" />
+        <Note name="note" />
         <Buttons>
           <Button btnType="submit" content="Save" bgColor="#4285F4" />
           <Button content="Delete" />

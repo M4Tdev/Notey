@@ -1,6 +1,9 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import _ from 'lodash';
+
+import history from '../history';
 
 import { fetchNotes } from '../actions';
 
@@ -38,9 +41,14 @@ class NotesList extends React.Component {
         <Heading>Notes</Heading>
         <Line />
         <ul>
-          <Note noteTitle="Test1" noteContent="This is a test Note!!" />
-          <Note noteTitle="Test2" noteContent="This is a test Note!!" />
-          <Note noteTitle="Test3" noteContent="This is a test Note!!" />
+          {_.values(this.props.notes).map(note => (
+            <Note
+              key={note.id}
+              id={note.id}
+              noteTitle={note.title}
+              noteContent={note.note}
+            />
+          ))}
         </ul>
       </Notes>
     );
