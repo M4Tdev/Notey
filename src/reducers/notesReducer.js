@@ -13,6 +13,8 @@ export default (state = { notes: {}, selectedNote: null }, action) => {
       return { ...state, notes: { ..._.mapKeys(action.payload, 'id') } };
     case FETCH_NOTE:
       return { ...state, selectedNote: { ...action.payload } };
+    case EDIT_NOTE:
+      return { ...state, notes: { [action.payload.id]: action.payload } };
     default:
       return state;
   }

@@ -53,3 +53,13 @@ export const fetchNotes = () => async (dispatch, getState) => {
     payload: response.data,
   });
 };
+
+export const editNote = (id, formValues) => async (dispatch, getState) => {
+  const { userId } = getState().auth;
+  const response = await notes.patch(`/${userId}/notes/${id}`, formValues);
+
+  dispatch({
+    type: EDIT_NOTE,
+    payload: response.data,
+  });
+};

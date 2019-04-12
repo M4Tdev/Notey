@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 // Action Creator
-import { fetchNote } from '../actions';
+import { fetchNote, editNote, fetchNotes } from '../actions';
 
 // Components
 import Form from './Form';
@@ -10,8 +10,9 @@ import Form from './Form';
 const EditNote = props => {
   const { id } = props.match.params;
 
-  const onSubmit = formValues => {
-    console.log(formValues);
+  const onSubmit = async formValues => {
+    await props.editNote(props.match.params.id, formValues);
+    await props.fetchNotes();
   };
   /* eslint-disable */
   useEffect(() => {
@@ -37,5 +38,5 @@ const mapStateToProp = state => ({
 
 export default connect(
   mapStateToProp,
-  { fetchNote }
+  { fetchNote, editNote, fetchNotes }
 )(EditNote);
