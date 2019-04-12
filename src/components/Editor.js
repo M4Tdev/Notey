@@ -12,14 +12,6 @@ const Container = styled.div`
 `;
 
 class Editor extends React.Component {
-  onNoteCreate = formValues => {
-    console.log('Form submit:', formValues);
-  };
-
-  onNoteEdit = formValues => {
-    console.log('Form Edit:', formValues);
-  };
-
   render() {
     return (
       <Container>
@@ -27,14 +19,12 @@ class Editor extends React.Component {
           <Route
             path="/notes"
             exact
-            render={props => (
-              <CreateNote {...props} onSubmit={this.onNoteCreate} />
-            )}
+            render={props => <CreateNote {...props} />}
           />
           <Route
             path="/notes/:id"
             exact
-            render={props => <EditNote {...props} onSubmit={this.onNoteEdit} />}
+            render={props => <EditNote {...props} />}
           />
         </Switch>
       </Container>
