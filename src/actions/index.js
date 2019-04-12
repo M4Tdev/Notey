@@ -7,7 +7,10 @@ import {
   EDIT_NOTE,
   DELETE_NOTE,
 } from './types';
+
 import notes from '../apis/notes';
+
+import history from '../history';
 
 export const signIn = (userId, userEmail) => ({
   type: SIGN_IN,
@@ -28,6 +31,7 @@ export const createNote = formValues => async (dispatch, getState) => {
     type: CREATE_NOTE,
     payload: response.data,
   });
+  history.push('/notes');
 };
 
 export const fetchNote = id => async (dispatch, getState) => {
