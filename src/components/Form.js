@@ -61,6 +61,15 @@ const Buttons = styled.div`
 `;
 
 class Form extends React.Component {
+  componentDidUpdate() {
+    this.valueChange(this.props.selectedNote);
+  }
+
+  valueChange = formValues => {
+    this.props.change('title', formValues.title);
+    this.props.change('note', formValues.note);
+  };
+
   onSubmit = formValues => {
     this.props.onSubmit(formValues);
   };

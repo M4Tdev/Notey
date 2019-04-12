@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import _ from 'lodash';
 
 // Action Creator
 import { fetchNote } from '../actions';
@@ -27,10 +26,7 @@ const EditNote = props => {
   return (
     <div>
       Edit Note
-      <Form
-        onSubmit={onSubmit}
-        initialValues={_.pick(props.note, 'title', 'note')}
-      />
+      <Form onSubmit={onSubmit} selectedNote={props.note} />
     </div>
   );
 };
