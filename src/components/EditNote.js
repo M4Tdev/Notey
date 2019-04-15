@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
 // Action Creator
-import { fetchNote, editNote, fetchNotes } from '../actions';
+import { fetchNote, editNote, fetchNotes, deleteNote } from '../actions';
 
 // Components
 import Form from './Form';
@@ -15,8 +15,10 @@ const EditNote = props => {
     await props.fetchNotes();
   };
 
-  const onNoteDelete = () => {
+  const onNoteDelete = async () => {
     console.log('Deleting note with id:', props.match.params.id);
+    await props.deleteNote(props.match.params.id);
+    await props.fetchNotes();
   };
   /* eslint-disable */
   useEffect(() => {
@@ -46,5 +48,5 @@ const mapStateToProp = state => ({
 
 export default connect(
   mapStateToProp,
-  { fetchNote, editNote, fetchNotes }
+  { fetchNote, editNote, fetchNotes, deleteNote }
 )(EditNote);

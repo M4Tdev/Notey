@@ -15,6 +15,10 @@ export default (state = { notes: {}, selectedNote: null }, action) => {
       return { ...state, selectedNote: { ...action.payload } };
     case EDIT_NOTE:
       return { ...state, notes: { [action.payload.id]: action.payload } };
+    case DELETE_NOTE:
+      return _.omit(state, action.payload);
+    case CREATE_NOTE:
+      return { ...state, notes: { [action.payload.id]: action.payload } };
     default:
       return state;
   }
