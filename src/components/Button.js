@@ -24,11 +24,18 @@ const Container = styled.button`
   }
 `;
 
+const noteDeleteAction = onNoteDelete => {
+  if (onNoteDelete) {
+    onNoteDelete();
+  }
+};
+
 const Button = props => (
   <>
     <Container
       type={props.btnType === 'submit' ? 'submit' : 'button'}
       bgColor={props.bgColor}
+      onClick={() => noteDeleteAction(props.onNoteDelete)}
     >
       {props.content}
     </Container>

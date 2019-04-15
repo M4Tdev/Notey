@@ -62,7 +62,9 @@ const Buttons = styled.div`
 
 class Form extends React.Component {
   componentDidUpdate() {
-    this.valueChange(this.props.selectedNote);
+    if (this.props.selectedNote) {
+      this.valueChange(this.props.selectedNote);
+    }
   }
 
   valueChange = formValues => {
@@ -81,7 +83,11 @@ class Form extends React.Component {
         <Note name="note" />
         <Buttons>
           <Button btnType="submit" content="Save" bgColor="#4285F4" />
-          <Button content="Delete" />
+          {this.props.selectedNote ? (
+            <Button content="Delete" onNoteDelete={this.props.onNoteDelete} />
+          ) : (
+            ''
+          )}
         </Buttons>
       </Container>
     );

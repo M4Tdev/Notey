@@ -14,6 +14,10 @@ const EditNote = props => {
     await props.editNote(props.match.params.id, formValues);
     await props.fetchNotes();
   };
+
+  const onNoteDelete = () => {
+    console.log('Deleting note with id:', props.match.params.id);
+  };
   /* eslint-disable */
   useEffect(() => {
     async function fetch() {
@@ -27,7 +31,11 @@ const EditNote = props => {
   return (
     <div>
       Edit Note
-      <Form onSubmit={onSubmit} selectedNote={props.note} />
+      <Form
+        onSubmit={onSubmit}
+        selectedNote={props.note}
+        onNoteDelete={onNoteDelete}
+      />
     </div>
   );
 };
