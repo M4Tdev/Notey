@@ -46,10 +46,6 @@ export const fetchNote = id => async (dispatch, getState) => {
 
 export const fetchNotes = () => async (dispatch, getState) => {
   const { userId } = getState().auth;
-  const checkDb = await notes.get('/db');
-  if (!checkDb.data[userId]) {
-    notes.post(`/db/${userId}`);
-  }
   const response = await notes.get(`/${userId}/notes`);
 
   dispatch({
@@ -66,6 +62,8 @@ export const editNote = (id, formValues) => async (dispatch, getState) => {
     type: EDIT_NOTE,
     payload: response.data,
   });
+
+  history.push('/notes');
 };
 
 export const deleteNote = id => async (dispatch, getState) => {
