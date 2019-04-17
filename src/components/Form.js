@@ -61,17 +61,6 @@ const Buttons = styled.div`
 `;
 
 class Form extends React.Component {
-  componentDidUpdate() {
-    if (this.props.selectedNote) {
-      this.valueChange(this.props.selectedNote);
-    }
-  }
-
-  valueChange = formValues => {
-    this.props.change('title', formValues.title);
-    this.props.change('note', formValues.note);
-  };
-
   onSubmit = formValues => {
     this.props.onSubmit(formValues);
   };
@@ -83,11 +72,7 @@ class Form extends React.Component {
         <Note name="note" />
         <Buttons>
           <Button btnType="submit" content="Save" bgColor="#4285F4" />
-          {this.props.selectedNote ? (
-            <Button content="Delete" onNoteDelete={this.props.onNoteDelete} />
-          ) : (
-            ''
-          )}
+          <Button content="Delete" onNoteDelete={this.props.onNoteDelete} />
         </Buttons>
       </Container>
     );
@@ -96,4 +81,5 @@ class Form extends React.Component {
 
 export default reduxForm({
   form: 'editor',
+  enableReinitialize: true,
 })(Form);
