@@ -35,7 +35,7 @@ const EditNote = props => {
       Edit Note
       <Form
         onSubmit={onSubmit}
-        selectedNote={props.note}
+        initialValues={props.note}
         onNoteDelete={onNoteDelete}
       />
     </div>
