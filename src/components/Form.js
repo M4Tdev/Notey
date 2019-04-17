@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Field, reduxForm } from 'redux-form';
+import _ from 'lodash';
 
 // Components
 import Button from './Button';
@@ -72,7 +73,11 @@ class Form extends React.Component {
         <Note name="note" />
         <Buttons>
           <Button btnType="submit" content="Save" bgColor="#4285F4" />
-          <Button content="Delete" onNoteDelete={this.props.onNoteDelete} />
+          {_.has(this.props.initialValues, 'id') ? (
+            <Button content="Delete" onNoteDelete={this.props.onNoteDelete} />
+          ) : (
+            ''
+          )}
         </Buttons>
       </Container>
     );
