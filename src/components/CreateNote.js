@@ -15,10 +15,9 @@ class CreateNote extends React.Component {
 
   render() {
     return (
-      <div>
-        Create Note
+      <>
         <Form onSubmit={this.onSubmit} />
-      </div>
+      </>
     );
   }
 }

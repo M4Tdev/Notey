@@ -31,14 +31,13 @@ const EditNote = props => {
   /* eslint-enable */
 
   return (
-    <div>
-      Edit Note
+    <>
       <Form
         onSubmit={onSubmit}
         initialValues={props.note}
         onNoteDelete={onNoteDelete}
       />
-    </div>
+    </>
   );
 };
 
