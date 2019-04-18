@@ -6,6 +6,7 @@ import {
   FETCH_NOTES,
   EDIT_NOTE,
   DELETE_NOTE,
+  CLEAR_SELECTED_NOTE,
 } from './types';
 
 import notes from '../apis/notes';
@@ -75,3 +76,7 @@ export const deleteNote = id => async (dispatch, getState) => {
 
   history.push('/notes');
 };
+
+export const clearSelectedNote = () => ({
+  type: CLEAR_SELECTED_NOTE,
+});
