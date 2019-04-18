@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import _ from 'lodash';
 
-import { fetchNotes } from '../actions';
+import { fetchNotes, deleteNote } from '../actions';
 
 // Components
 import Note from './Note';
@@ -33,6 +33,12 @@ class NotesList extends React.Component {
     this.props.fetchNotes();
   }
 
+  deleteNote = async (e, id) => {
+    e.stopPropagation();
+    await this.props.deleteNote(id);
+    this.props.fetchNotes();
+  };
+
   render() {
     return (
       <Notes>
@@ -45,6 +51,7 @@ class NotesList extends React.Component {
               id={note.id}
               noteTitle={note.title}
               noteContent={note.note}
+              deleteNote={this.deleteNote}
             />
           ))}
         </ul>
@@ -59,5 +66,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { fetchNotes }
+  { fetchNotes, deleteNote }
 )(NotesList);
