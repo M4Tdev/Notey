@@ -62,8 +62,6 @@ export const editNote = (id, formValues) => async (dispatch, getState) => {
     type: EDIT_NOTE,
     payload: response.data,
   });
-
-  history.push('/notes');
 };
 
 export const deleteNote = id => async (dispatch, getState) => {
