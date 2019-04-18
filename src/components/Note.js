@@ -2,8 +2,11 @@ import React from 'react';
 import styled from 'styled-components';
 import { TrashAlt } from 'styled-icons/fa-regular';
 import _ from 'lodash';
+import { connect } from 'react-redux';
 
 import history from '../history';
+
+import { clearSelectedNote } from '../actions';
 
 const Container = styled.li`
   position: relative;
@@ -63,8 +66,13 @@ const Note = props => {
     props.deleteNote(e, props.id);
   };
 
+  const loadNote = () => {
+    props.clearSelectedNote();
+    history.push(`/notes/${props.id}`);
+  };
+
   return (
-    <Container onClick={() => history.push(`/notes/${props.id}`)}>
+    <Container onClick={loadNote}>
       <DeleteButton onClick={deleteNote}>
         <DeleteButtonIcon />
       </DeleteButton>
@@ -76,4 +84,7 @@ const Note = props => {
   );
 };
 
-export default Note;
+export default connect(
+  null,
+  { clearSelectedNote }
+)(Note);
