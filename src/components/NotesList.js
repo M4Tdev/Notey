@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import _ from 'lodash';
+import { Plus } from 'styled-icons/fa-solid';
 import history from '../history';
 
 import { fetchNotes, deleteNote, clearSelectedNote } from '../actions';
@@ -19,8 +20,8 @@ const Row = styled.div`
   display: grid;
   width: 100%;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 4.5rem;
-  grid-template-areas: '. Heading AddNoteButton';
+  grid-template-rows: 4.5rem auto;
+  grid-template-areas: 'AddNoteButton Heading .' '. Line .';
 `;
 
 const Heading = styled.h2`
@@ -28,31 +29,44 @@ const Heading = styled.h2`
   letter-spacing: 0.1em;
   font-size: 2.6rem;
   font-weight: 300;
-  /* margin: 1rem 0 0; */
   align-self: center;
   grid-area: Heading;
 `;
 
 const AddNoteButton = styled.button`
-  background-color: #f46036;
+  background-color: #06c73a; // #f46036
   border: none;
-  border-radius: 0.5rem;
-  color: white;
-  padding: 0.3rem;
-  display: block;
-  height: 3rem;
-  width: 8rem;
-  justify-self: end;
+  border-radius: 50%;
+  height: 3.3rem;
+  width: 3.3rem;
+  justify-self: start;
   align-self: center;
-  margin-right: 5px;
-  font-size: 1.4rem;
+  margin-left: 15px;
   grid-area: AddNoteButton;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.1s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+`;
+
+const PlusIcon = styled(Plus)`
+  color: white;
+  width: 1.5rem;
+  height: 1.8rem;
+  transform: scale(1.3);
 `;
 
 const Line = styled.hr`
   color: rgba(0, 0, 0, 0.3);
   margin: 0 auto 1rem;
   width: 5.6rem;
+  grid-area: Line;
 `;
 
 class NotesList extends React.Component {
@@ -76,9 +90,11 @@ class NotesList extends React.Component {
       <Notes>
         <Row>
           <Heading>Notes</Heading>
-          <AddNoteButton onClick={this.createNewNote}>Add Note</AddNoteButton>
+          <AddNoteButton onClick={this.createNewNote}>
+            <PlusIcon />
+          </AddNoteButton>
+          <Line />
         </Row>
-        <Line />
         <ul>
           {_.values(this.props.notes).map(note => (
             <Note
