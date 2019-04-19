@@ -20,7 +20,7 @@ const Row = styled.div`
   display: grid;
   width: 100%;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 4.5rem auto;
+  grid-template-rows: 4.5rem 1rem;
   grid-template-areas: 'AddNoteButton Heading .' '. Line .';
 `;
 
@@ -69,6 +69,11 @@ const Line = styled.hr`
   grid-area: Line;
 `;
 
+const List = styled.ul`
+  max-height: calc(100% - 5.5rem);
+  overflow-y: auto;
+`;
+
 class NotesList extends React.Component {
   componentDidMount() {
     this.props.fetchNotes();
@@ -95,7 +100,7 @@ class NotesList extends React.Component {
           </AddNoteButton>
           <Line />
         </Row>
-        <ul>
+        <List>
           {_.values(this.props.notes).map(note => (
             <Note
               key={note.id}
@@ -105,7 +110,7 @@ class NotesList extends React.Component {
               deleteNote={this.deleteNote}
             />
           ))}
-        </ul>
+        </List>
       </Notes>
     );
   }
