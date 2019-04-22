@@ -10,7 +10,6 @@ export default (signIn, signOut) => {
 
     const onAuthChange = async user => {
       if (user) {
-        console.log(user);
         await signIn(user.uid, user.email);
         history.push('/notes');
       } else {
