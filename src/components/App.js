@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import firebase from 'firebase';
+import base from '../base';
 
 // Components
 import ModalLoader from './ModalLoader';
@@ -20,8 +22,8 @@ const InnerContainer = styled.div`
 `;
 
 class App extends React.Component {
-  onSignOut = () => {
-    window.gapi.auth2.getAuthInstance().signOut();
+  onSignOut = async () => {
+    await base.auth().signOut();
   };
 
   render() {

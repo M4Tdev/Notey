@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Google } from 'styled-icons/fa-brands';
+import firebase from 'firebase';
+import base from '../base';
 
 import ModalLoader from './ModalLoader';
 
@@ -42,7 +44,9 @@ const GoogleIcon = styled(Google)`
 `;
 
 const onSignIn = () => {
-  window.gapi.auth2.getAuthInstance().signIn();
+  const provider = new firebase.auth.GoogleAuthProvider();
+
+  base.auth().signInWithPopup(provider);
 };
 
 const Login = props => {
