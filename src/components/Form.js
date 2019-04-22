@@ -69,8 +69,8 @@ class Form extends React.Component {
   render() {
     return (
       <Container onSubmit={this.props.handleSubmit(this.onSubmit)}>
-        <Title name="title" type="text" />
-        <Note name="note" />
+        <Title name="title" type="text" required />
+        <Note name="note" required />
         <Buttons>
           <Button btnType="submit" content="Save" bgColor="#4285F4" />
           {_.has(this.props.initialValues, 'id') ? (
