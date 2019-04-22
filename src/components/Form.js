@@ -37,7 +37,7 @@ const Note = styled(Field).attrs({
   placeholder: 'Note',
 })`
   display: block;
-  margin: 5rem auto 0;
+  margin: 2.5rem auto 0;
   width: 60%;
   min-height: 30rem;
   padding: 0.5rem 1rem;
