@@ -50,8 +50,9 @@ const DeleteButton = styled.button`
   position: absolute;
   background: transparent;
   border: none;
-  top: 1rem;
+  top: 50%;
   right: 1rem;
+  transform: translateY(-50%);
   transition: visibility 0s, opacity 0.7s ease;
 `;
 
