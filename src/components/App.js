@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import base from '../base';
 
 // Components
 import ModalLoader from './ModalLoader';
@@ -20,14 +21,15 @@ const InnerContainer = styled.div`
 `;
 
 class App extends React.Component {
-  onSignOut = () => {
-    window.gapi.auth2.getAuthInstance().signOut();
+  onSignOut = async () => {
+    await base.auth().signOut();
   };
 
   render() {
     if (!this.props.isSignedIn) {
       return <ModalLoader />;
     }
+
     return (
       <Container>
         <TopBar userEmail={this.props.userEmail} onSignOut={this.onSignOut} />
