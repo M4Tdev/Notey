@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Google } from 'styled-icons/fa-brands';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/auth';
 import base from '../base';
 
 import ModalLoader from './ModalLoader';

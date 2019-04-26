@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
-import firebase from 'firebase';
 import base from '../base';
 
 // Components
@@ -30,6 +29,7 @@ class App extends React.Component {
     if (!this.props.isSignedIn) {
       return <ModalLoader />;
     }
+
     return (
       <Container>
         <TopBar userEmail={this.props.userEmail} onSignOut={this.onSignOut} />
