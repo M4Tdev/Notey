@@ -68,8 +68,10 @@ const Note = props => {
   };
 
   const loadNote = () => {
-    props.clearSelectedNote();
-    history.push(`/notes/${props.id}`);
+    if (history.location.pathname !== `/notes/${props.id}`) {
+      props.clearSelectedNote();
+      history.push(`/notes/${props.id}`);
+    }
   };
 
   return (
