@@ -6,6 +6,7 @@ import { fetchNote, editNote, fetchNotes, deleteNote } from '../actions';
 
 // Components
 import Form from './Form';
+import Loader from './Loader';
 
 const EditNote = props => {
   const { id } = props.match.params;
@@ -29,6 +30,10 @@ const EditNote = props => {
     fetch();
   }, [id]);
   /* eslint-enable */
+
+  if (!props.note) {
+    return <Loader />;
+  }
 
   return (
     <>
