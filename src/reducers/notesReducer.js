@@ -9,14 +9,14 @@ import {
 } from '../actions/types';
 
 export default (
-  state = { notes: {}, selectedNote: null, fetchingNotes: true },
+  state = { notes: {}, selectedNote: null, notesFetched: false },
   action
 ) => {
   switch (action.type) {
     case FETCH_NOTES:
       return {
         ...state,
-        fetchingNotes: false,
+        notesFetched: true,
         notes: { ..._.mapKeys(action.payload, 'id') },
       };
     case FETCH_NOTE:

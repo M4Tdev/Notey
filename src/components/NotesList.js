@@ -92,7 +92,7 @@ class NotesList extends React.Component {
   };
 
   render() {
-    if (this.props.fetchingNotes === true) {
+    if (this.props.notesFetched === false) {
       return (
         <Notes>
           <Row>
@@ -134,7 +134,7 @@ class NotesList extends React.Component {
 
 const mapStateToProps = state => ({
   notes: state.notes.notes,
-  fetchingNotes: state.notes.fetchingNotes,
+  notesFetched: state.notes.notesFetched,
 });
 
 export default connect(
