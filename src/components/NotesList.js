@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import _ from 'lodash';
 import { Plus } from 'styled-icons/fa-solid';
 import history from '../history';
+import Loader from './Loader';
 
 import { fetchNotes, deleteNote, clearSelectedNote } from '../actions';
 
@@ -91,6 +92,21 @@ class NotesList extends React.Component {
   };
 
   render() {
+    if (this.props.fetchingNotes === true) {
+      return (
+        <Notes>
+          <Row>
+            <Heading>Notes</Heading>
+            <AddNoteButton onClick={this.createNewNote}>
+              <PlusIcon />
+            </AddNoteButton>
+            <Line />
+          </Row>
+          <Loader />
+        </Notes>
+      );
+    }
+
     return (
       <Notes>
         <Row>
@@ -118,6 +134,7 @@ class NotesList extends React.Component {
 
 const mapStateToProps = state => ({
   notes: state.notes.notes,
+  fetchingNotes: state.notes.fetchingNotes,
 });
 
 export default connect(

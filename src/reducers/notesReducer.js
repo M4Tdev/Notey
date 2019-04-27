@@ -8,10 +8,17 @@ import {
   CLEAR_SELECTED_NOTE,
 } from '../actions/types';
 
-export default (state = { notes: {}, selectedNote: null }, action) => {
+export default (
+  state = { notes: {}, selectedNote: null, fetchingNotes: true },
+  action
+) => {
   switch (action.type) {
     case FETCH_NOTES:
-      return { ...state, notes: { ..._.mapKeys(action.payload, 'id') } };
+      return {
+        ...state,
+        fetchingNotes: false,
+        notes: { ..._.mapKeys(action.payload, 'id') },
+      };
     case FETCH_NOTE:
       return { ...state, selectedNote: { ...action.payload } };
     case EDIT_NOTE:
