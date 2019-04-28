@@ -26,7 +26,11 @@ export default (
     case DELETE_NOTE:
       return _.omit(state, action.payload);
     case CREATE_NOTE:
-      return { ...state, notes: { [action.payload.id]: action.payload } };
+      return {
+        ...state,
+        notesFetched: false,
+        notes: { [action.payload.id]: action.payload },
+      };
     case CLEAR_SELECTED_NOTE:
       return { ...state, selectedNote: null };
     default:
