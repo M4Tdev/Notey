@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
+import styled from 'styled-components';
 
 // Action Creators
 import { createNote, fetchNotes } from '../actions';
@@ -7,20 +8,37 @@ import { createNote, fetchNotes } from '../actions';
 // Components
 import Form from './Form';
 
-class CreateNote extends React.Component {
-  onSubmit = async formValues => {
-    await this.props.createNote(formValues);
-    await this.props.fetchNotes();
+import '../css/spinningLoader.scss';
+
+const StyledDiv = styled.div`
+  position: relative;
+`;
+
+const StyledLoader = styled.div`
+  z-index: 99;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+`;
+
+const CreateNote = props => {
+  const [showLoader, setShowLoader] = useState(false);
+
+  const onSubmit = async formValues => {
+    setShowLoader(true);
+    await props.createNote(formValues);
+    await props.fetchNotes();
+    setShowLoader(false);
   };
 
-  render() {
-    return (
-      <>
-        <Form onSubmit={this.onSubmit} />
-      </>
-    );
-  }
-}
+  return (
+    <StyledDiv>
+      {showLoader ? <StyledLoader className="spinning-loader" /> : ''}
+      <Form onSubmit={onSubmit} />
+    </StyledDiv>
+  );
+};
 
 export default connect(
   null,
