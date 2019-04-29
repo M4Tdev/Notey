@@ -36,7 +36,6 @@ const EditNote = props => {
   };
 
   const onNoteDelete = async () => {
-    console.log('Deleting note with id:', props.match.params.id);
     setShowLoader(true);
     await props.deleteNote(props.match.params.id);
     await props.fetchNotes();
@@ -49,6 +48,10 @@ const EditNote = props => {
     }
 
     fetch();
+
+    return () => {
+      setShowLoader(false);
+    };
   }, [id]);
   /* eslint-enable */
 
