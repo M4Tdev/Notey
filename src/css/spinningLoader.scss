@@ -1,0 +1,19 @@
+.spinning-loader:before {
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1.8rem;
+  height: 1.8rem;
+  margin-top: -10px;
+  margin-left: -10px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  border-top-color: #000;
+  animation: spinningLoader .6s linear infinite;
+}
+
+@keyframes spinningLoader {
+  to {transform: rotate(360deg);}
+}

@@ -6,7 +6,7 @@ import _ from 'lodash';
 // Components
 import Button from './Button';
 
-const Container = styled.form`
+const StyledForm = styled.form`
   text-align: center;
   /* height: 100%; */
 `;
@@ -83,6 +83,7 @@ const Buttons = styled.div`
 class Form extends React.Component {
   onSubmit = formValues => {
     this.props.onSubmit(formValues);
+    this.props.reset();
   };
 
   required = value => (value ? undefined : 'Required');
@@ -112,7 +113,7 @@ class Form extends React.Component {
 
   render() {
     return (
-      <Container onSubmit={this.props.handleSubmit(this.onSubmit)}>
+      <StyledForm onSubmit={this.props.handleSubmit(this.onSubmit)}>
         <Field
           name="title"
           type="text"
@@ -134,7 +135,7 @@ class Form extends React.Component {
             ''
           )}
         </Buttons>
-      </Container>
+      </StyledForm>
     );
   }
 }
