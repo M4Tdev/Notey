@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import {
   SIGN_IN,
   SIGN_OUT,
@@ -7,6 +8,7 @@ import {
   EDIT_NOTE,
   DELETE_NOTE,
   CLEAR_SELECTED_NOTE,
+  CLEAR_NOTES,
 } from './types';
 
 import notes from '../apis/notes';
@@ -57,7 +59,10 @@ export const fetchNotes = () => async (dispatch, getState) => {
 
 export const editNote = (id, formValues) => async (dispatch, getState) => {
   const { userId } = getState().auth;
-  const response = await notes.patch(`/${userId}/notes/${id}`, formValues);
+  const response = await notes.patch(
+    `/${userId}/notes/${id}`,
+    _.pick(formValues, ['title', 'note'])
+  );
 
   dispatch({
     type: EDIT_NOTE,
@@ -79,4 +84,8 @@ export const deleteNote = id => async (dispatch, getState) => {
 
 export const clearSelectedNote = () => ({
   type: CLEAR_SELECTED_NOTE,
+});
+
+export const clearNotes = () => ({
+  type: CLEAR_NOTES,
 });

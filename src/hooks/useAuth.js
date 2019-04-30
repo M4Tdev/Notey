@@ -4,7 +4,7 @@ import base from '../base';
 
 import history from '../history';
 
-export default (signIn, signOut) => {
+export default (signIn, signOut, clearNotes) => {
   useEffect(() => {
 
     const onAuthChange = async user => {
@@ -13,6 +13,7 @@ export default (signIn, signOut) => {
         history.push('/notes');
       } else {
         await signOut();
+        await clearNotes();
         history.push('/login');
       }
     };

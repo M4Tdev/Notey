@@ -6,22 +6,40 @@ import {
   EDIT_NOTE,
   DELETE_NOTE,
   CLEAR_SELECTED_NOTE,
+  CLEAR_NOTES,
 } from '../actions/types';
 
-export default (state = { notes: {}, selectedNote: null }, action) => {
+export default (
+  state = { notes: {}, selectedNote: null, notesFetched: false },
+  action
+) => {
   switch (action.type) {
     case FETCH_NOTES:
-      return { ...state, notes: { ..._.mapKeys(action.payload, 'id') } };
+      return {
+        ...state,
+        notesFetched: true,
+        notes: { ..._.mapKeys(action.payload, 'id') },
+      };
     case FETCH_NOTE:
       return { ...state, selectedNote: { ...action.payload } };
     case EDIT_NOTE:
-      return { ...state, notes: { [action.payload.id]: action.payload } };
+      return {
+        ...state,
+        notesFetched: false,
+        notes: { [action.payload.id]: action.payload },
+      };
     case DELETE_NOTE:
       return _.omit(state, action.payload);
     case CREATE_NOTE:
-      return { ...state, notes: { [action.payload.id]: action.payload } };
+      return {
+        ...state,
+        notesFetched: false,
+        notes: { [action.payload.id]: action.payload },
+      };
     case CLEAR_SELECTED_NOTE:
       return { ...state, selectedNote: null };
+    case CLEAR_NOTES:
+      return { ...state, notes: {}, selectedNote: null, notesFetched: false };
     default:
       return state;
   }
