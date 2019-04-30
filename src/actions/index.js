@@ -1,3 +1,4 @@
+import _ from 'lodash';
 import {
   SIGN_IN,
   SIGN_OUT,
@@ -57,7 +58,10 @@ export const fetchNotes = () => async (dispatch, getState) => {
 
 export const editNote = (id, formValues) => async (dispatch, getState) => {
   const { userId } = getState().auth;
-  const response = await notes.patch(`/${userId}/notes/${id}`, formValues);
+  const response = await notes.patch(
+    `/${userId}/notes/${id}`,
+    _.pick(formValues, ['title', 'note'])
+  );
 
   dispatch({
     type: EDIT_NOTE,
