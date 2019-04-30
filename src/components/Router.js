@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 // imports associated with Redux
-import { signIn, signOut } from '../actions';
+import { signIn, signOut, clearNotes } from '../actions';
 import history from '../history';
 
 // Components
@@ -15,8 +15,8 @@ import Login from './Login';
 // Hooks
 import useAuth from '../hooks/useAuth';
 
-const Router = ({ signIn, signOut, isSignedIn }) => {
-  useAuth(signIn, signOut);
+const Router = ({ signIn, signOut, isSignedIn, clearNotes }) => {
+  useAuth(signIn, signOut, clearNotes);
 
   return (
     <BrowserRouter history={history}>
@@ -47,5 +47,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { signIn, signOut }
+  { signIn, signOut, clearNotes }
 )(Router);

@@ -8,6 +8,7 @@ import {
   EDIT_NOTE,
   DELETE_NOTE,
   CLEAR_SELECTED_NOTE,
+  CLEAR_NOTES,
 } from './types';
 
 import notes from '../apis/notes';
@@ -83,4 +84,8 @@ export const deleteNote = id => async (dispatch, getState) => {
 
 export const clearSelectedNote = () => ({
   type: CLEAR_SELECTED_NOTE,
+});
+
+export const clearNotes = () => ({
+  type: CLEAR_NOTES,
 });

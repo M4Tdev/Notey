@@ -6,3 +6,4 @@ export const DELETE_NOTE = 'DELETE_NOTE';
 export const SIGN_IN = 'SIGN_IN';
 export const SIGN_OUT = 'SIGN_OUT';
 export const CLEAR_SELECTED_NOTE = 'CLEAR_SELECTED_NOTE';
+export const CLEAR_NOTES = 'CLEAR_NOTES';
