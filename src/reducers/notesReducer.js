@@ -22,7 +22,11 @@ export default (
     case FETCH_NOTE:
       return { ...state, selectedNote: { ...action.payload } };
     case EDIT_NOTE:
-      return { ...state, notes: { [action.payload.id]: action.payload } };
+      return {
+        ...state,
+        notesFetched: false,
+        notes: { [action.payload.id]: action.payload },
+      };
     case DELETE_NOTE:
       return _.omit(state, action.payload);
     case CREATE_NOTE:

@@ -32,6 +32,7 @@ const EditNote = props => {
     setShowLoader(true);
     await props.editNote(props.match.params.id, formValues);
     await props.fetchNotes();
+    await props.fetchNote(id);
     setShowLoader(false);
   };
 
