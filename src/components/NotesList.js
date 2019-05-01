@@ -49,10 +49,10 @@ const AddNoteButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: transform 0.1s ease;
+  transition: transform 0.2s ease;
 
   &:hover {
-    transform: scale(1.1);
+    transform: scale(1.1) rotate(180deg);
   }
 `;
 
