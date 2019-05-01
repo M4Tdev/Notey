@@ -16,6 +16,8 @@ const Container = styled.li`
   cursor: pointer;
   border-top: 0.1rem solid rgba(0, 0, 0, 0.3);
   border-bottom: 0.1rem solid rgba(0, 0, 0, 0.3);
+  background-color: none;
+  transition: background-color 0.2s ease;
 
   &:hover {
     background-color: rgba(66, 133, 244, 0.2);
@@ -24,14 +26,6 @@ const Container = styled.li`
       visibility: visible;
       opacity: 1;
     }
-
-    &:nth-child(odd) {
-      background-color: rgba(66, 133, 244, 0.2);
-    }
-  }
-
-  &:nth-child(odd) {
-    background-color: #f1f1f1;
   }
 `;
 
