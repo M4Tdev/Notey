@@ -6,7 +6,12 @@ import { Plus } from 'styled-icons/fa-solid';
 import history from '../history';
 import Loader from './Loader';
 
-import { fetchNotes, deleteNote, clearSelectedNote } from '../actions';
+import {
+  fetchNotes,
+  deleteNote,
+  clearSelectedNote,
+  deleteNotes,
+} from '../actions';
 
 // Components
 import Note from './Note';
@@ -113,52 +118,53 @@ const StyledDiv = styled.div`
 `;
 
 const Box = styled.div`
-  width: 50%;
+  width: 40%;
   height: 30%;
-  background-color: #4285f4;
+  background-image: linear-gradient(to bottom right, #5c9fff, #4285f4);
   border-radius: 1rem;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  flex-wrap: wrap;
+  flex-direction: column;
+  box-shadow: 0.1rem 0.1rem 0.6rem 0.1rem rgba(88, 88, 88, 0.3);
 `;
 
 const StyledH2 = styled.h2`
-  flex-basis: 100%;
   color: white;
-  font-size: 2.2rem;
+  font-size: 2rem;
   text-align: center;
 `;
 
+const StyledButtons = styled.div`
+  width: 40%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-evenly;
+`;
+
 const StyledButton = styled.button`
-  padding: 1rem 1.5rem;
-  border-radius: 0.5rem;
+  padding: 1rem 2.5rem;
+  border-radius: 1rem;
   border: none;
   font-weight: 500;
+  box-shadow: 0rem 0.1rem 0.5rem 0.1rem rgba(88, 88, 88, 0.3);
+  transition: transform 0.1s ease;
+
+  &:hover {
+    transform: translateY(-0.3rem);
+  }
 `;
 
 const StyledConfirmButton = styled(StyledButton)`
-  border: 2px solid red;
-  background-color: white;
-  color: red;
-  transition: background-color 0.2s ease, color 0.2s ease;
-
-  &:hover {
-    background-color: red;
-    color: white;
-  }
+  border: 1px solid #ff6961; // #ed5e68 or #ff6961
+  background-color: #ff6961; // #ed5e68 or #ff6961
+  color: white;
 `;
 
 const StyledCancelButton = styled(StyledButton)`
-  border: 2px solid black;
+  border: 1px solid white;
   background-color: white;
-  color: black;
-  transition: background-color 0.2s ease, color 0.2s ease;
-
-  &:hover {
-    background-color: black;
-    color: white;
-  }
+  color: #585858; // #484c65 or #585858
 `;
 
 class NotesList extends React.Component {
@@ -183,7 +189,6 @@ class NotesList extends React.Component {
 
   showConfirmModal = () => {
     if (!this.state.showModal) {
-      console.log('Showing Modal to Config or Cancel Delete All action');
       this.setState({ showModal: true });
     }
   };
@@ -194,8 +199,9 @@ class NotesList extends React.Component {
     }
   };
 
-  handleModalClick = e => {
-    e.stopPropagation();
+  handleConfirmButton = async () => {
+    await this.props.deleteNotes();
+    this.setState({ showModal: false });
   };
 
   render() {
@@ -219,15 +225,27 @@ class NotesList extends React.Component {
 
     return (
       <Notes>
-        {!this.state.showModal ? (
+        {this.state.showModal ? (
           <Modal>
             <StyledDiv onClick={this.closeConfirmModal}>
-              <Box onClick={e => this.handleModalClick(e)}>
+              <Box onClick={e => e.stopPropagation()}>
                 <StyledH2>
                   Are you sure you want to delete all of your notes?
                 </StyledH2>
-                <StyledConfirmButton type="button">Confirm</StyledConfirmButton>
-                <StyledCancelButton type="button">Cancel</StyledCancelButton>
+                <StyledButtons>
+                  <StyledConfirmButton
+                    type="button"
+                    onClick={this.handleConfirmButton}
+                  >
+                    Confirm
+                  </StyledConfirmButton>
+                  <StyledCancelButton
+                    type="button"
+                    onClick={this.closeConfirmModal}
+                  >
+                    Cancel
+                  </StyledCancelButton>
+                </StyledButtons>
               </Box>
             </StyledDiv>
           </Modal>
@@ -265,5 +283,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { fetchNotes, deleteNote, clearSelectedNote }
+  { fetchNotes, deleteNote, clearSelectedNote, deleteNotes }
 )(NotesList);
