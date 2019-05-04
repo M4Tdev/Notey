@@ -7,6 +7,7 @@ import {
   DELETE_NOTE,
   CLEAR_SELECTED_NOTE,
   CLEAR_NOTES,
+  DELETE_NOTES,
 } from '../actions/types';
 
 export default (
@@ -40,6 +41,8 @@ export default (
       return { ...state, selectedNote: null };
     case CLEAR_NOTES:
       return { ...state, notes: {}, selectedNote: null, notesFetched: false };
+    case DELETE_NOTES:
+      return { ...state, notes: {} };
     default:
       return state;
   }
