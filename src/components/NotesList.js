@@ -6,10 +6,18 @@ import { Plus } from 'styled-icons/fa-solid';
 import history from '../history';
 import Loader from './Loader';
 
-import { fetchNotes, deleteNote, clearSelectedNote } from '../actions';
+import {
+  fetchNotes,
+  deleteNote,
+  clearSelectedNote,
+  deleteNotes,
+} from '../actions';
 
 // Components
 import Note from './Note';
+import Modal from './Modal';
+
+import '../css/spinningLoader.scss';
 
 const Notes = styled.div`
   width: 40rem;
@@ -22,7 +30,7 @@ const Row = styled.div`
   width: 100%;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 4.5rem 1rem;
-  grid-template-areas: 'AddNoteButton Heading .' '. Line .';
+  grid-template-areas: 'AddNoteButton Heading DeleteButton' '. Line .';
 `;
 
 const Heading = styled.h2`
@@ -63,6 +71,29 @@ const PlusIcon = styled(Plus)`
   transform: scale(1.3);
 `;
 
+const DeleteAllNotes = styled.button`
+  padding: 0.6rem;
+  background-color: transparent;
+  border: 1px solid red;
+  border-radius: 10px;
+  grid-area: DeleteButton;
+  grid-row-start: 1;
+  grid-row-end: 3;
+  justify-self: end;
+  align-self: center;
+  margin-right: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: red;
+  transition: background-color 0.2s ease, color 0.2s ease;
+
+  &:hover {
+    background-color: red;
+    color: white;
+  }
+`;
+
 const Line = styled.hr`
   color: rgba(0, 0, 0, 0.3);
   margin: 0 auto 1rem;
@@ -75,7 +106,82 @@ const List = styled.ul`
   overflow-y: auto;
 `;
 
+// Modal styles
+const StyledDiv = styled.div`
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.3);
+`;
+
+const Box = styled.div`
+  width: 78rem;
+  height: 25rem;
+  background-image: linear-gradient(to bottom right, #5c9fff, #4285f4);
+  border-radius: 1rem;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 0.1rem 0.1rem 0.6rem 0.1rem rgba(88, 88, 88, 0.3);
+`;
+
+const StyledH2 = styled.h2`
+  color: white;
+  font-size: 2rem;
+  text-align: center;
+`;
+
+const StyledButtons = styled.div`
+  width: 40%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-evenly;
+`;
+
+const StyledButton = styled.button`
+  width: 12rem;
+  height: 4rem;
+  padding: 1rem 2.5rem;
+  border-radius: 1rem;
+  border: none;
+  font-weight: 500;
+  box-shadow: 0rem 0.1rem 0.5rem 0.1rem rgba(88, 88, 88, 0.3);
+  transition: transform 0.1s ease;
+
+  &:hover {
+    transform: translateY(-0.3rem);
+  }
+`;
+
+const StyledConfirmButton = styled(StyledButton)`
+  border: 1px solid #ff6961; // #ed5e68 or #ff6961
+  background-color: #ff6961; // #ed5e68 or #ff6961
+  color: white;
+  position: relative;
+`;
+
+const ButtonLoader = styled.div`
+  margin: auto;
+`;
+
+const StyledCancelButton = styled(StyledButton)`
+  border: 1px solid white;
+  background-color: white;
+  color: #585858; // #484c65 or #585858
+`;
+
 class NotesList extends React.Component {
+  state = {
+    showModal: false,
+    showLoader: false,
+  };
+
   componentDidMount() {
     this.props.fetchNotes();
   }
@@ -91,6 +197,24 @@ class NotesList extends React.Component {
     this.props.clearSelectedNote();
   };
 
+  showConfirmModal = () => {
+    if (!this.state.showModal) {
+      this.setState({ showModal: true });
+    }
+  };
+
+  closeConfirmModal = () => {
+    if (this.state.showModal) {
+      this.setState({ showModal: false });
+    }
+  };
+
+  handleConfirmButton = async () => {
+    this.setState({ showLoader: true });
+    await this.props.deleteNotes();
+    this.setState({ showModal: false, showLoader: false });
+  };
+
   render() {
     if (this.props.notesFetched === false) {
       return (
@@ -100,6 +224,9 @@ class NotesList extends React.Component {
             <AddNoteButton onClick={this.createNewNote}>
               <PlusIcon />
             </AddNoteButton>
+            <DeleteAllNotes onClick={this.showConfirmModal}>
+              Delete All
+            </DeleteAllNotes>
             <Line />
           </Row>
           <Loader />
@@ -109,11 +236,43 @@ class NotesList extends React.Component {
 
     return (
       <Notes>
+        {this.state.showModal ? (
+          <Modal>
+            <StyledDiv onClick={this.closeConfirmModal}>
+              <Box onClick={e => e.stopPropagation()}>
+                <StyledH2>
+                  Are you sure you want to delete all of your notes?
+                </StyledH2>
+                <StyledButtons>
+                  <StyledConfirmButton
+                    type="button"
+                    onClick={this.handleConfirmButton}
+                  >
+                    {!this.state.showLoader ? (
+                      'Confirm'
+                    ) : (
+                      <ButtonLoader className="spinning-loader" />
+                    )}
+                  </StyledConfirmButton>
+                  <StyledCancelButton
+                    type="button"
+                    onClick={this.closeConfirmModal}
+                  >
+                    Cancel
+                  </StyledCancelButton>
+                </StyledButtons>
+              </Box>
+            </StyledDiv>
+          </Modal>
+        ) : null}
         <Row>
           <Heading>Notes</Heading>
           <AddNoteButton onClick={this.createNewNote}>
             <PlusIcon />
           </AddNoteButton>
+          <DeleteAllNotes onClick={this.showConfirmModal}>
+            Delete All
+          </DeleteAllNotes>
           <Line />
         </Row>
         <List>
@@ -139,5 +298,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { fetchNotes, deleteNote, clearSelectedNote }
+  { fetchNotes, deleteNote, clearSelectedNote, deleteNotes }
 )(NotesList);

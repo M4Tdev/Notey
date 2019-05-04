@@ -23,7 +23,7 @@ const ModalLoader = () =>
         <div className="rect5" />
       </div>
     </Container>,
-    document.querySelector('#ModalLoader')
+    document.querySelector('#modal-root')
   );
 
 export default ModalLoader;
