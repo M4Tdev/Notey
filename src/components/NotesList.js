@@ -17,6 +17,8 @@ import {
 import Note from './Note';
 import Modal from './Modal';
 
+import '../css/spinningLoader.scss';
+
 const Notes = styled.div`
   width: 40rem;
   height: 100%;
@@ -118,8 +120,8 @@ const StyledDiv = styled.div`
 `;
 
 const Box = styled.div`
-  width: 40%;
-  height: 30%;
+  width: 78rem;
+  height: 25rem;
   background-image: linear-gradient(to bottom right, #5c9fff, #4285f4);
   border-radius: 1rem;
   display: flex;
@@ -143,6 +145,8 @@ const StyledButtons = styled.div`
 `;
 
 const StyledButton = styled.button`
+  width: 12rem;
+  height: 4rem;
   padding: 1rem 2.5rem;
   border-radius: 1rem;
   border: none;
@@ -159,6 +163,11 @@ const StyledConfirmButton = styled(StyledButton)`
   border: 1px solid #ff6961; // #ed5e68 or #ff6961
   background-color: #ff6961; // #ed5e68 or #ff6961
   color: white;
+  position: relative;
+`;
+
+const ButtonLoader = styled.div`
+  margin: auto;
 `;
 
 const StyledCancelButton = styled(StyledButton)`
@@ -170,6 +179,7 @@ const StyledCancelButton = styled(StyledButton)`
 class NotesList extends React.Component {
   state = {
     showModal: false,
+    showLoader: false,
   };
 
   componentDidMount() {
@@ -200,8 +210,9 @@ class NotesList extends React.Component {
   };
 
   handleConfirmButton = async () => {
+    this.setState({ showLoader: true });
     await this.props.deleteNotes();
-    this.setState({ showModal: false });
+    this.setState({ showModal: false, showLoader: false });
   };
 
   render() {
@@ -237,7 +248,11 @@ class NotesList extends React.Component {
                     type="button"
                     onClick={this.handleConfirmButton}
                   >
-                    Confirm
+                    {!this.state.showLoader ? (
+                      'Confirm'
+                    ) : (
+                      <ButtonLoader className="spinning-loader" />
+                    )}
                   </StyledConfirmButton>
                   <StyledCancelButton
                     type="button"
