@@ -7,16 +7,19 @@ const Container = styled.button`
   border-radius: 0.3rem;
   display: inline-block;
   margin-right: 2rem;
-  background-color: ${props => props.bgColor || '#EDEDED'};
+  background-image: linear-gradient(to bottom right, #5c9fff, #4285f4);
+  background-image: ${props =>
+    props.bgColor === '#4285F4'
+      ? 'linear-gradient(to bottom right, #5c9fff, #4285f4)'
+      : 'linear-gradient(to bottom right, #EDEDED, #D4D4D4)'};
   color: ${props => (props.bgColor === '#4285F4' ? 'white' : 'black')};
+  font-weight: 500;
   box-shadow: 0 0.4rem 0.6rem rgba(0, 0, 0, 0.25);
   border: none;
+  transition: transform 0.2s ease;
 
   &:hover {
-    background-color: ${props =>
-      props.bgColor === '#4285F4'
-        ? 'rgba(41, 108, 219, 1)'
-        : 'rgba(212, 212, 212, 1)'};
+    transform: translateY(-0.3rem);
   }
 
   &:last-child {
