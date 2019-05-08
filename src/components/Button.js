@@ -7,7 +7,6 @@ const Container = styled.button`
   border-radius: 0.3rem;
   display: inline-block;
   margin-right: 2rem;
-  background-image: linear-gradient(to bottom right, #5c9fff, #4285f4);
   background-image: ${props =>
     props.bgColor === '#4285F4'
       ? 'linear-gradient(to bottom right, #5c9fff, #4285f4)'
