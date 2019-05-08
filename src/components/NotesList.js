@@ -152,7 +152,7 @@ const StyledButton = styled.button`
   border: none;
   font-weight: 500;
   box-shadow: 0rem 0.1rem 0.5rem 0.1rem rgba(88, 88, 88, 0.3);
-  transition: transform 0.1s ease;
+  transition: transform 0.2s ease;
 
   &:hover {
     transform: translateY(-0.3rem);
