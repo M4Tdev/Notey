@@ -104,6 +104,20 @@ const Line = styled.hr`
 const List = styled.ul`
   max-height: calc(100% - 5.5rem);
   overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 0.75rem;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #f7f7f7;
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-image: linear-gradient(to bottom right, #5c9fff, #4285f4);
+    border-radius: 10px;
+  }
 `;
 
 // Modal styles
