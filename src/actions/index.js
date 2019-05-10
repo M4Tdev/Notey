@@ -1,3 +1,4 @@
+import timestamp from 'time-stamp';
 import {
   SIGN_IN,
   SIGN_OUT,
@@ -26,7 +27,9 @@ export const signOut = () => ({
 
 export const createNote = formValues => async (dispatch, getState) => {
   const { userId } = getState().auth;
-  const { id } = await db.collection(`${userId}`).add({ ...formValues });
+  const { id } = await db
+    .collection(`${userId}`)
+    .add({ timeStamp: timestamp('YYYYMMDDHHmmss'), ...formValues });
 
   const addedItem = await db
     .collection(`${userId}`)
@@ -59,7 +62,10 @@ export const fetchNote = id => async (dispatch, getState) => {
 
 export const fetchNotes = () => async (dispatch, getState) => {
   const { userId } = getState().auth;
-  const notes = await db.collection(`${userId}`).get();
+  const notes = await db
+    .collection(`${userId}`)
+    .orderBy('timeStamp', 'desc')
+    .get();
 
   const notesArray = [];
 
@@ -122,12 +128,13 @@ export const deleteNotes = () => async (dispatch, getState) => {
   const { userId } = getState().auth;
   const { docs } = await db.collection(`${userId}`).get();
 
-  await docs.forEach(note => {
-    const { id } = note;
-    db.collection(`${userId}`)
+  for (const doc of docs) {
+    const { id } = doc;
+    await db
+      .collection(`${userId}`)
       .doc(id)
       .delete();
-  });
+  }
 
   dispatch({
     type: DELETE_NOTES,
