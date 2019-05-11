@@ -8,10 +8,14 @@ const Container = styled.button`
   display: inline-block;
   margin-right: 2rem;
   background-image: ${props =>
-    props.bgColor === '#4285F4'
-      ? 'linear-gradient(to bottom right, #5c9fff, #4285f4)'
-      : 'linear-gradient(to bottom right, #EDEDED, #D4D4D4)'};
-  color: ${props => (props.bgColor === '#4285F4' ? 'white' : 'black')};
+    props.bgColor === 'primary'
+      ? `linear-gradient(to bottom right, ${props.theme.colors.lighterMain}, ${
+          props.theme.colors.main
+        })`
+      : `linear-gradient(to bottom right, ${props =>
+          props.theme.colors.deleteBtnLight}, ${props =>
+          props.theme.colors.deleteBtn})`};
+  color: ${props => (props.bgColor === 'primary' ? 'white' : 'black')};
   font-weight: 500;
   box-shadow: 0 0.4rem 0.6rem rgba(0, 0, 0, 0.25);
   border: none;

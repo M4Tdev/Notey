@@ -24,8 +24,8 @@ const Input = styled.input`
   font-size: 1.8rem;
 
   border: none;
-  border-left: 0.1rem solid ${props => props.theme.borderColor};
-  border-bottom: 0.1rem solid ${props => props.theme.borderColor};
+  border-left: 0.1rem solid ${props => props.theme.colors.borderColor};
+  border-bottom: 0.1rem solid ${props => props.theme.colors.borderColor};
 
   &::placeholder {
     font-size: 1.8rem;
@@ -44,7 +44,8 @@ const TextArea = styled.textarea`
   min-height: 30rem;
   padding: 0.5rem 1rem;
   font-size: 1.8rem;
-  box-shadow: 0.15rem 0.15rem 0.5rem 0.2rem ${props => props.theme.borderColor};
+  box-shadow: 0.15rem 0.15rem 0.5rem 0.2rem
+    ${props => props.theme.colors.borderColor};
   border: none;
   border-radius: 0.5rem;
   resize: vertical;
@@ -55,7 +56,8 @@ const TextArea = styled.textarea`
   }
 
   &[data-error='true'] {
-    box-shadow: 0.15rem 0.15rem 0.5rem 0.2rem ${props => props.theme.errorColor};
+    box-shadow: 0.15rem 0.15rem 0.5rem 0.2rem
+      ${props => props.theme.colors.errorColor};
   }
 `;
 
@@ -128,7 +130,7 @@ class Form extends React.Component {
           validate={this.required}
         />
         <Buttons>
-          <Button btnType="submit" content="Save" bgColor="#4285F4" />
+          <Button btnType="submit" content="Save" bgColor="primary" />
           {_.has(this.props.initialValues, 'id') ? (
             <Button content="Delete" onNoteDelete={this.props.onNoteDelete} />
           ) : (
