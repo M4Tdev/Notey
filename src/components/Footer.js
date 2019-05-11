@@ -6,7 +6,7 @@ const StyledFooter = styled.div`
   height: 2rem;
   font-size: 1.4rem;
   text-align: center;
-  background-color: #f7f7f7;
+  background-color: ${props => props.theme.lightGrey};
   font-weight: 500;
 `;
 

@@ -19,14 +19,14 @@ const Heading = styled.h1`
   font-weight: bold;
   font-size: 4.6rem;
   letter-spacing: 0.2em;
-  color: #5b5b5b;
+  color: ${props => props.theme.grey};
 `;
 
 const Button = styled.button`
-  background-color: #4285f4;
+  background-color: ${props => props.theme.main};
   border-radius: 1rem;
   border: none;
-  color: #fff;
+  color: ${props => props.theme.white};
   padding: 1.5rem 4.5rem;
   margin: 11.2rem 0;
   position: relative;

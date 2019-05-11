@@ -22,7 +22,7 @@ import '../css/spinningLoader.scss';
 const Notes = styled.div`
   width: 40rem;
   height: 100%;
-  border-right: 0.1rem solid rgba(0, 0, 0, 0.3);
+  border-right: 0.1rem solid ${props => props.theme.borderColor};
 `;
 
 const Row = styled.div`
@@ -95,7 +95,7 @@ const DeleteAllNotes = styled.button`
 `;
 
 const Line = styled.hr`
-  color: rgba(0, 0, 0, 0.3);
+  color: ${props => props.theme.borderColor};
   margin: 0 auto 1rem;
   width: 5.6rem;
   grid-area: Line;
@@ -110,12 +110,16 @@ const List = styled.ul`
   }
 
   &::-webkit-scrollbar-track {
-    background-color: #f7f7f7;
+    background-color: ${props => props.theme.lightGrey};
     border-radius: 10px;
   }
 
   &::-webkit-scrollbar-thumb {
-    background-image: linear-gradient(to bottom right, #5c9fff, #4285f4);
+    background-image: linear-gradient(
+      to bottom right,
+      ${props => props.theme.lighterMain},
+      ${props => props.theme.main}
+    );
     border-radius: 10px;
   }
 `;
@@ -130,19 +134,23 @@ const StyledDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: ${props => props.theme.borderColor};
 `;
 
 const Box = styled.div`
   width: 78rem;
   height: 25rem;
-  background-image: linear-gradient(to bottom right, #5c9fff, #4285f4);
+  background-image: linear-gradient(
+    to bottom right,
+    ${props => props.theme.lighterMain},
+    ${props => props.theme.main}
+  );
   border-radius: 1rem;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
-  box-shadow: 0.1rem 0.1rem 0.6rem 0.1rem rgba(88, 88, 88, 0.3);
+  box-shadow: 0.1rem 0.1rem 0.6rem 0.1rem ${props => props.theme.shadowColor};
 `;
 
 const StyledH2 = styled.h2`
@@ -165,7 +173,7 @@ const StyledButton = styled.button`
   border-radius: 1rem;
   border: none;
   font-weight: 500;
-  box-shadow: 0rem 0.1rem 0.5rem 0.1rem rgba(88, 88, 88, 0.3);
+  box-shadow: 0rem 0.1rem 0.5rem 0.1rem ${props => props.theme.shadowColor};
   transition: transform 0.2s ease;
 
   &:hover {
@@ -174,8 +182,8 @@ const StyledButton = styled.button`
 `;
 
 const StyledConfirmButton = styled(StyledButton)`
-  border: 1px solid #ff6961; // #ed5e68 or #ff6961
-  background-color: #ff6961; // #ed5e68 or #ff6961
+  border: 1px solid ${props => props.theme.confirmBtnColor};
+  background-color: ${props => props.theme.confirmBtnColor};
   color: white;
   position: relative;
 `;
@@ -187,7 +195,7 @@ const ButtonLoader = styled.div`
 const StyledCancelButton = styled(StyledButton)`
   border: 1px solid white;
   background-color: white;
-  color: #585858; // #484c65 or #585858
+  color: ${props => props.theme.cancelBtnColor};
 `;
 
 class NotesList extends React.Component {

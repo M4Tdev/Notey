@@ -24,8 +24,8 @@ const Input = styled.input`
   font-size: 1.8rem;
 
   border: none;
-  border-left: 0.1rem solid rgba(0, 0, 0, 0.25);
-  border-bottom: 0.1rem solid rgba(0, 0, 0, 0.25);
+  border-left: 0.1rem solid ${props => props.theme.borderColor};
+  border-bottom: 0.1rem solid ${props => props.theme.borderColor};
 
   &::placeholder {
     font-size: 1.8rem;
@@ -44,7 +44,7 @@ const TextArea = styled.textarea`
   min-height: 30rem;
   padding: 0.5rem 1rem;
   font-size: 1.8rem;
-  box-shadow: 0.15rem 0.15rem 0.5rem 0.2rem rgba(0, 0, 0, 0.25);
+  box-shadow: 0.15rem 0.15rem 0.5rem 0.2rem ${props => props.theme.borderColor};
   border: none;
   border-radius: 0.5rem;
   resize: vertical;
@@ -55,7 +55,7 @@ const TextArea = styled.textarea`
   }
 
   &[data-error='true'] {
-    box-shadow: 0.15rem 0.15rem 0.5rem 0.2rem rgba(255, 0, 0, 0.5);
+    box-shadow: 0.15rem 0.15rem 0.5rem 0.2rem ${props => props.theme.errorColor};
   }
 `;
 
