@@ -7,7 +7,7 @@ import { ThemeProvider } from 'styled-components';
 
 import Router from './components/Router';
 import rootReducer from './reducers';
-import GlobalStyles from './utils/globalStyles';
+import GlobalStyles from './utils/globals';
 import theme from './utils/theme';
 
 const composeEnhancers =
