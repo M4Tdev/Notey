@@ -7,7 +7,7 @@ import { ThemeProvider } from 'styled-components';
 
 import Router from './components/Router';
 import rootReducer from './reducers';
-import GlobalStyles from './utils/globals';
+import GlobalStyles from './utils/global';
 import theme from './utils/theme';
 
 const composeEnhancers =
@@ -22,9 +22,11 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <GlobalStyles />
     <ThemeProvider theme={theme}>
-      <Router />
+      <>
+        <Router />
+        <GlobalStyles />
+      </>
     </ThemeProvider>
   </Provider>,
   document.querySelector('#root')
