@@ -1,16 +1,20 @@
 const theme = {
-  main: '#4285f4',
-  lighterMain: '#5c9fff',
-  lightGrey: '#f7f7f7',
-  borderColor: 'rgba(0, 0, 0, 0.25)',
-  errorColor: 'rgba(255, 0, 0, 0.5)',
-  grey: '#5b5b5b',
-  white: '#fff',
-  noteHover: 'rgba(66, 133, 244, 0.2)',
-  green: '#06c73a',
-  shadowColor: 'rgba(88, 88, 88, 0.3)',
-  confirmBtnColor: '#ff6961',
-  cancelBtnColor: '#585858',
+  colors: {
+    main: '#4285f4',
+    lighterMain: '#5c9fff',
+    lightGrey: '#f7f7f7',
+    grey: '#5b5b5b',
+    white: '#fff',
+    green: '#06c73a',
+    confirmBtnColor: '#ff6961',
+    cancelBtnColor: '#585858',
+    deleteBtnLight: '#EDEDED',
+    deleteBtn: '#D4D4D4',
+    borderColor: 'rgba(0, 0, 0, 0.25)',
+    errorColor: 'rgba(255, 0, 0, 0.5)',
+    noteHover: 'rgba(66, 133, 244, 0.2)',
+    shadowColor: 'rgba(88, 88, 88, 0.3)',
+  },
 };
 
 export default theme;
