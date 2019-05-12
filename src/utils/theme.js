@@ -1,7 +1,7 @@
 const theme = {
   colors: {
     main: '#4285f4',
-    lighterMain: '#5c9fff',
+    lightMain: '#5c9fff',
     lightGrey: '#f7f7f7',
     grey: '#5b5b5b',
     white: '#fff',
@@ -14,6 +14,13 @@ const theme = {
     errorColor: 'rgba(255, 0, 0, 0.5)',
     noteHover: 'rgba(66, 133, 244, 0.2)',
     shadowColor: 'rgba(88, 88, 88, 0.3)',
+  },
+  mediaQueries: {
+    smallest: 'only screen and (max-width: 25em)',
+    small: 'only screen and (max-width: 37.5em)',
+    medium: 'only screen and (max-width: 56.25em)',
+    large: 'only screen and (max-width: 80em)',
+    largest: 'only screen and (max-width: 90em)',
   },
 };
 
