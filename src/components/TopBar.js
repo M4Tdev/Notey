@@ -5,7 +5,7 @@ import { SignOutAlt } from 'styled-icons/fa-solid';
 const Container = styled.div`
   width: 100vw;
   height: 4.5rem;
-  background-color: ${props => props.theme.colors.main};
+  background-color: var(--color-main);
   color: white;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;

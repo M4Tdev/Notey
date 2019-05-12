@@ -22,7 +22,7 @@ import '../css/spinningLoader.scss';
 const Notes = styled.div`
   width: 40rem;
   height: 100%;
-  border-right: 0.1rem solid ${props => props.theme.colors.borderColor};
+  border-right: 0.1rem solid var(--color-border);
 `;
 
 const Row = styled.div`
@@ -43,7 +43,7 @@ const Heading = styled.h2`
 `;
 
 const AddNoteButton = styled.button`
-  background-color: ${props => props.theme.colors.green};
+  background-color: var(--color-green);
   border: none;
   border-radius: 50%;
   height: 3.3rem;
@@ -95,7 +95,7 @@ const DeleteAllNotes = styled.button`
 `;
 
 const Line = styled.hr`
-  color: ${props => props.theme.colors.borderColor};
+  color: var(--color-border);
   margin: 0 auto 1rem;
   width: 5.6rem;
   grid-area: Line;
@@ -110,15 +110,15 @@ const List = styled.ul`
   }
 
   &::-webkit-scrollbar-track {
-    background-color: ${props => props.theme.colors.lightGrey};
+    background-color: var(--color-lightGrey);
     border-radius: 10px;
   }
 
   &::-webkit-scrollbar-thumb {
     background-image: linear-gradient(
       to bottom right,
-      ${props => props.theme.colors.lighterMain},
-      ${props => props.theme.colors.main}
+      var(--color-lightMain),
+      var(--color-main)
     );
     border-radius: 10px;
   }
@@ -134,7 +134,7 @@ const StyledDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: ${props => props.theme.colors.borderColor};
+  background-color: var(--color-border);
 `;
 
 const Box = styled.div`
@@ -142,16 +142,15 @@ const Box = styled.div`
   height: 25rem;
   background-image: linear-gradient(
     to bottom right,
-    ${props => props.theme.colors.lighterMain},
-    ${props => props.theme.colors.main}
+    var(--color-lightMain),
+    var(--color-main)
   );
   border-radius: 1rem;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
   flex-direction: column;
-  box-shadow: 0.1rem 0.1rem 0.6rem 0.1rem
-    ${props => props.theme.colors.shadowColor};
+  box-shadow: 0.1rem 0.1rem 0.6rem 0.1rem var(--color-shadow);
 `;
 
 const StyledH2 = styled.h2`
@@ -174,8 +173,7 @@ const StyledButton = styled.button`
   border-radius: 1rem;
   border: none;
   font-weight: 500;
-  box-shadow: 0rem 0.1rem 0.5rem 0.1rem
-    ${props => props.theme.colors.shadowColor};
+  box-shadow: 0rem 0.1rem 0.5rem 0.1rem var(--color-shadow);
   transition: transform 0.2s ease;
 
   &:hover {
@@ -184,8 +182,8 @@ const StyledButton = styled.button`
 `;
 
 const StyledConfirmButton = styled(StyledButton)`
-  border: 1px solid ${props => props.theme.colors.confirmBtnColor};
-  background-color: ${props => props.theme.colors.confirmBtnColor};
+  border: 1px solid var(--color-confirmBtn);
+  background-color: var(--color-confirmBtn);
   color: white;
   position: relative;
 `;
@@ -197,7 +195,7 @@ const ButtonLoader = styled.div`
 const StyledCancelButton = styled(StyledButton)`
   border: 1px solid white;
   background-color: white;
-  color: ${props => props.theme.colors.cancelBtnColor};
+  color: var(--color-cancelBtn);
 `;
 
 class NotesList extends React.Component {

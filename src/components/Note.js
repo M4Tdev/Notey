@@ -14,13 +14,13 @@ const Container = styled.li`
   position: relative;
   padding: 1.5rem;
   cursor: pointer;
-  border-top: 0.1rem solid ${props => props.theme.colors.borderColor};
-  border-bottom: 0.1rem solid ${props => props.theme.colors.borderColor};
+  border-top: 0.1rem solid var(--color-border);
+  border-bottom: 0.1rem solid var(--color-border);
   background-color: none;
   transition: background-color 0.2s ease;
 
   &:hover {
-    background-color: ${props => props.theme.colors.noteHover};
+    background-color: var(--color-noteHover);
 
     & > button {
       visibility: visible;

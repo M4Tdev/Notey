@@ -9,12 +9,8 @@ const Container = styled.button`
   margin-right: 2rem;
   background-image: ${props =>
     props.bgColor === 'primary'
-      ? `linear-gradient(to bottom right, ${props.theme.colors.lighterMain}, ${
-          props.theme.colors.main
-        })`
-      : `linear-gradient(to bottom right, ${props =>
-          props.theme.colors.deleteBtnLight}, ${props =>
-          props.theme.colors.deleteBtn})`};
+      ? `linear-gradient(to bottom right, var(--color-lightMain), var(--color-main))`
+      : `linear-gradient(to bottom right, var(--color-deleteBtnLight), var(--color-deleteBtn))`};
   color: ${props => (props.bgColor === 'primary' ? 'white' : 'black')};
   font-weight: 500;
   box-shadow: 0 0.4rem 0.6rem rgba(0, 0, 0, 0.25);
