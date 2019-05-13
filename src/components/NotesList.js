@@ -23,6 +23,10 @@ const Notes = styled.div`
   width: 40rem;
   height: 100%;
   border-right: 0.1rem solid var(--color-border);
+
+  @media ${props => props.theme.mediaQueries.smallest} {
+    width: 100vw;
+  }
 `;
 
 const Row = styled.div`
@@ -31,6 +35,11 @@ const Row = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 4.5rem 1rem;
   grid-template-areas: 'AddNoteButton Heading DeleteButton' '. Line .';
+
+  @media ${props => props.theme.mediaQueries.smallest} {
+    grid-template-rows: 4rem 0.7rem;
+    grid-template-areas: '. Heading DeleteButton' '. Line .';
+  }
 `;
 
 const Heading = styled.h2`
@@ -40,6 +49,10 @@ const Heading = styled.h2`
   font-weight: 300;
   align-self: center;
   grid-area: Heading;
+
+  @media ${props => props.theme.mediaQueries.smallest} {
+    font-size: 2.3rem;
+  }
 `;
 
 const AddNoteButton = styled.button`
@@ -61,6 +74,16 @@ const AddNoteButton = styled.button`
 
   &:hover {
     transform: scale(1.1) rotate(180deg);
+  }
+
+  @media ${props => props.theme.mediaQueries.smallest} {
+    position: absolute;
+    bottom: 3rem;
+    right: 3rem;
+    width: 5rem;
+    height: 5rem;
+    z-index: 10;
+    margin-left: 0;
   }
 `;
 
@@ -151,12 +174,22 @@ const Box = styled.div`
   align-items: center;
   flex-direction: column;
   box-shadow: 0.1rem 0.1rem 0.6rem 0.1rem var(--color-shadow);
+
+  @media ${props => props.theme.mediaQueries.smallest} {
+    width: 70vw;
+    height: 30vh;
+    padding: 0.5rem;
+  }
 `;
 
 const StyledH2 = styled.h2`
   color: white;
   font-size: 2rem;
   text-align: center;
+
+  @media ${props => props.theme.mediaQueries.smallest} {
+    font-size: 1.5rem;
+  }
 `;
 
 const StyledButtons = styled.div`
@@ -164,6 +197,10 @@ const StyledButtons = styled.div`
   margin: 0 auto;
   display: flex;
   justify-content: space-evenly;
+
+  @media ${props => props.theme.mediaQueries.smallest} {
+    width: 100%;
+  }
 `;
 
 const StyledButton = styled.button`
@@ -178,6 +215,12 @@ const StyledButton = styled.button`
 
   &:hover {
     transform: translateY(-0.3rem);
+  }
+
+  @media ${props => props.theme.mediaQueries.smallest} {
+    width: 10rem;
+    font-size: 1.3rem;
+    padding: 1rem;
   }
 `;
 
@@ -219,6 +262,13 @@ class NotesList extends React.Component {
     this.props.clearSelectedNote();
   };
 
+  createNewNoteMobile = () => {
+    history.push('/notes');
+    this.props.clearSelectedNote();
+    console.log(this.props.showMenu);
+    this.props.showMenu();
+  };
+
   showConfirmModal = () => {
     if (!this.state.showModal) {
       this.setState({ showModal: true });
@@ -243,7 +293,13 @@ class NotesList extends React.Component {
         <Notes>
           <Row>
             <Heading>Notes</Heading>
-            <AddNoteButton onClick={this.createNewNote}>
+            <AddNoteButton
+              onClick={
+                this.props.isMobile
+                  ? this.createNewNoteMobile
+                  : this.createNewNote
+              }
+            >
               <PlusIcon />
             </AddNoteButton>
             <DeleteAllNotes onClick={this.showConfirmModal}>
@@ -289,7 +345,13 @@ class NotesList extends React.Component {
         ) : null}
         <Row>
           <Heading>Notes</Heading>
-          <AddNoteButton onClick={this.createNewNote}>
+          <AddNoteButton
+            onClick={
+              this.props.isMobile
+                ? this.createNewNoteMobile
+                : this.createNewNote
+            }
+          >
             <PlusIcon />
           </AddNoteButton>
           <DeleteAllNotes onClick={this.showConfirmModal}>
@@ -305,6 +367,8 @@ class NotesList extends React.Component {
               noteTitle={note.title}
               noteContent={note.note}
               deleteNote={this.deleteNote}
+              isMobile={this.props.isMobile}
+              showMenu={this.props.showMenu}
             />
           ))}
         </List>
