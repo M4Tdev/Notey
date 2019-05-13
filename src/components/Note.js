@@ -82,8 +82,13 @@ const Note = props => {
     }
   };
 
+  const handleMobile = () => {
+    loadNote();
+    props.showMenu();
+  };
+
   return (
-    <Container onClick={loadNote}>
+    <Container onClick={props.isMobile ? handleMobile : loadNote}>
       {isDeleting ? (
         <DeletingSpinner className="spinning-loader" />
       ) : (
