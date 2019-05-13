@@ -11,6 +11,11 @@ const Container = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 4.5rem;
   grid-template-areas: '. logo user';
+
+  @media ${props => props.theme.mediaQueries.smallest} {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 'logo user';
+  }
 `;
 
 const Logo = styled.h1`
@@ -21,6 +26,13 @@ const Logo = styled.h1`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media ${props => props.theme.mediaQueries.smallest} {
+    font-size: 2rem;
+    margin: 0 0 0 1rem;
+    justify-content: flex-start;
+    align-items: center;
+  }
 `;
 
 const User = styled.div`
@@ -30,6 +42,11 @@ const User = styled.div`
   justify-content: flex-end;
   align-items: center;
   margin: 0 1.5rem 0 0;
+  font-size: 1.2rem;
+
+  @media ${props => props.theme.mediaQueries.smallest} {
+    font-size: 1.1rem;
+  }
 `;
 
 const SignOutBtn = styled.button`
@@ -41,6 +58,10 @@ const SignOutBtn = styled.button`
 const SignOutIcon = styled(SignOutAlt)`
   color: white;
   width: 3rem;
+
+  @media ${props => props.theme.mediaQueries.smallest} {
+    width: 2rem;
+  }
 `;
 
 class TopBar extends React.Component {

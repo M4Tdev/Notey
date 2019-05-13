@@ -29,11 +29,21 @@ const Input = styled.input`
 
   &::placeholder {
     font-size: 1.8rem;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.1rem;
   }
 
   &[data-error='true'] {
     border-color: red;
+  }
+
+  @media ${props => props.theme.mediaQueries.smallest} {
+    margin: 2rem auto 0;
+    width: 90%;
+    font-size: 1.6rem;
+
+    &::placeholder {
+      font-size: 1.6rem;
+    }
   }
 `;
 
@@ -57,6 +67,15 @@ const TextArea = styled.textarea`
   &[data-error='true'] {
     box-shadow: 0.15rem 0.15rem 0.5rem 0.2rem var(--color-error);
   }
+
+  @media ${props => props.theme.mediaQueries.smallest} {
+    width: 90%;
+    font-size: 1.6rem;
+
+    &::placeholder {
+      font-size: 1.6rem;
+    }
+  }
 `;
 
 const ErrorMessage = styled.span`
@@ -70,6 +89,10 @@ const ErrorMessage = styled.span`
   text-align: left;
   font-size: 14px;
   font-weight: bold;
+
+  @media ${({ theme }) => theme.mediaQueries.smallest} {
+    width: 90%;
+  }
 `;
 
 const Buttons = styled.div`
@@ -78,6 +101,12 @@ const Buttons = styled.div`
   margin: 3rem auto 1rem;
   flex-direction: row;
   justify-content: flex-start;
+
+  @media ${({ theme }) => theme.mediaQueries.smallest} {
+    width: 90%;
+    margin: 2.5rem auto 1rem;
+    justify-content: center;
+  }
 `;
 
 class Form extends React.Component {
