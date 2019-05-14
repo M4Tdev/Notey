@@ -41,8 +41,9 @@ const styles = {
   bmMenuWrap: {
     position: 'fixed',
     top: '0',
-    height: '100vh',
-    width: '100vw',
+    left: '0',
+    height: '100%',
+    width: '100%',
   },
   bmMenu: {
     background: '#373a47',
@@ -61,6 +62,8 @@ const styles = {
   },
   bmOverlay: {
     background: 'rgba(0, 0, 0, 0.3)',
+    width: '100%',
+    height: '100%',
   },
 };
 
