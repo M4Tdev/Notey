@@ -24,6 +24,10 @@ const InnerContainer = styled.div`
   @media ${props => props.theme.mediaQueries.smallest} {
     display: block;
   }
+
+  @media ${props => props.theme.mediaQueries.small} {
+    display: block;
+  }
 `;
 
 class App extends React.Component {
@@ -78,11 +82,13 @@ class App extends React.Component {
         <InnerContainer>
           <NotesList isMobile={this.state.mobile} showMenu={this.showMenu} />
           {this.state.mobile ? (
-            /* eslint-disable */
-            <BurgerMenu width={ '100%' } isOpen={ this.state.menuOpen } onStateChange={this.handleStateChange} />
-            /* eslint-enable */
+            <>
+              {/* eslint-disable */}
+              <BurgerMenu width={ '100%' } isOpen={ this.state.menuOpen } onStateChange={this.handleStateChange} />
+              {/* eslint-enable */}
+            </>
           ) : (
-            <Editor isMobile={this.state.mobile} />
+            <Editor />
           )}
         </InnerContainer>
         <Footer />

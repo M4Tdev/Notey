@@ -15,6 +15,11 @@ const StyledFooter = styled.div`
     height: 1.5rem;
     font-size: 1rem;
   }
+
+  @media ${props => props.theme.mediaQueries.small} {
+    height: 1.7rem;
+    font-size: 1.2rem;
+  }
 `;
 
 const Footer = () => <StyledFooter>&copy; Mateusz Lesiuk</StyledFooter>;

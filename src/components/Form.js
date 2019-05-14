@@ -45,6 +45,16 @@ const Input = styled.input`
       font-size: 1.6rem;
     }
   }
+
+  @media ${props => props.theme.mediaQueries.small} {
+    margin: 3rem auto 0;
+    width: 90%;
+    font-size: 1.6rem;
+
+    &::placeholder {
+      font-size: 1.6rem;
+    }
+  }
 `;
 
 const TextArea = styled.textarea`
@@ -76,6 +86,15 @@ const TextArea = styled.textarea`
       font-size: 1.6rem;
     }
   }
+
+  @media ${props => props.theme.mediaQueries.small} {
+    width: 90%;
+    font-size: 1.6rem;
+
+    &::placeholder {
+      font-size: 1.6rem;
+    }
+  }
 `;
 
 const ErrorMessage = styled.span`
@@ -93,6 +112,10 @@ const ErrorMessage = styled.span`
   @media ${({ theme }) => theme.mediaQueries.smallest} {
     width: 90%;
   }
+
+  @media ${({ theme }) => theme.mediaQueries.small} {
+    width: 90%;
+  }
 `;
 
 const Buttons = styled.div`
@@ -105,6 +128,11 @@ const Buttons = styled.div`
   @media ${({ theme }) => theme.mediaQueries.smallest} {
     width: 90%;
     margin: 2.5rem auto 1rem;
+    justify-content: center;
+  }
+
+  @media ${({ theme }) => theme.mediaQueries.small} {
+    width: 90%;
     justify-content: center;
   }
 `;

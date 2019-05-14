@@ -28,6 +28,10 @@ const Container = styled.button`
   @media ${({ theme }) => theme.mediaQueries.smallest} {
     width: 12rem;
   }
+
+  @media ${({ theme }) => theme.mediaQueries.small} {
+    width: 13rem;
+  }
 `;
 
 const noteDeleteAction = onNoteDelete => {

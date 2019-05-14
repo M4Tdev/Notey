@@ -27,6 +27,10 @@ const Notes = styled.div`
   @media ${props => props.theme.mediaQueries.smallest} {
     width: 100vw;
   }
+
+  @media ${props => props.theme.mediaQueries.small} {
+    width: 100vw;
+  }
 `;
 
 const Row = styled.div`
@@ -37,6 +41,11 @@ const Row = styled.div`
   grid-template-areas: 'AddNoteButton Heading DeleteButton' '. Line .';
 
   @media ${props => props.theme.mediaQueries.smallest} {
+    grid-template-rows: 4rem 0.7rem;
+    grid-template-areas: '. Heading DeleteButton' '. Line .';
+  }
+
+  @media ${props => props.theme.mediaQueries.small} {
     grid-template-rows: 4rem 0.7rem;
     grid-template-areas: '. Heading DeleteButton' '. Line .';
   }
@@ -52,6 +61,10 @@ const Heading = styled.h2`
 
   @media ${props => props.theme.mediaQueries.smallest} {
     font-size: 2.3rem;
+  }
+
+  @media ${props => props.theme.mediaQueries.small} {
+    font-size: 2.4rem;
   }
 `;
 
@@ -80,6 +93,16 @@ const AddNoteButton = styled.button`
     position: absolute;
     bottom: 3rem;
     right: 3rem;
+    width: 5rem;
+    height: 5rem;
+    z-index: 10;
+    margin-left: 0;
+  }
+
+  @media ${props => props.theme.mediaQueries.small} {
+    position: absolute;
+    bottom: 4rem;
+    right: 4rem;
     width: 5rem;
     height: 5rem;
     z-index: 10;
@@ -180,6 +203,12 @@ const Box = styled.div`
     height: 30vh;
     padding: 0.5rem;
   }
+
+  @media ${props => props.theme.mediaQueries.small} {
+    width: 80vw;
+    height: 30vh;
+    padding: 1rem;
+  }
 `;
 
 const StyledH2 = styled.h2`
@@ -190,6 +219,10 @@ const StyledH2 = styled.h2`
   @media ${props => props.theme.mediaQueries.smallest} {
     font-size: 1.5rem;
   }
+
+  @media ${props => props.theme.mediaQueries.small} {
+    font-size: 1.7rem;
+  }
 `;
 
 const StyledButtons = styled.div`
@@ -199,6 +232,10 @@ const StyledButtons = styled.div`
   justify-content: space-evenly;
 
   @media ${props => props.theme.mediaQueries.smallest} {
+    width: 100%;
+  }
+
+  @media ${props => props.theme.mediaQueries.small} {
     width: 100%;
   }
 `;
@@ -221,6 +258,12 @@ const StyledButton = styled.button`
     width: 10rem;
     font-size: 1.3rem;
     padding: 1rem;
+  }
+
+  @media ${props => props.theme.mediaQueries.small} {
+    width: 11rem;
+    font-size: 1.4rem;
+    padding: 1.1rem;
   }
 `;
 
@@ -265,7 +308,6 @@ class NotesList extends React.Component {
   createNewNoteMobile = () => {
     history.push('/notes');
     this.props.clearSelectedNote();
-    console.log(this.props.showMenu);
     this.props.showMenu();
   };
 

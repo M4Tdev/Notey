@@ -16,6 +16,11 @@ const Container = styled.div`
     grid-template-columns: 1fr 1fr;
     grid-template-areas: 'logo user';
   }
+
+  @media ${props => props.theme.mediaQueries.small} {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 'logo user';
+  }
 `;
 
 const Logo = styled.h1`
@@ -29,6 +34,13 @@ const Logo = styled.h1`
 
   @media ${props => props.theme.mediaQueries.smallest} {
     font-size: 2rem;
+    margin: 0 0 0 1rem;
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  @media ${props => props.theme.mediaQueries.small} {
+    font-size: 2.2rem;
     margin: 0 0 0 1rem;
     justify-content: flex-start;
     align-items: center;
@@ -47,6 +59,10 @@ const User = styled.div`
   @media ${props => props.theme.mediaQueries.smallest} {
     font-size: 1.1rem;
   }
+
+  @media ${props => props.theme.mediaQueries.small} {
+    font-size: 1.2rem;
+  }
 `;
 
 const SignOutBtn = styled.button`
@@ -61,6 +77,10 @@ const SignOutIcon = styled(SignOutAlt)`
 
   @media ${props => props.theme.mediaQueries.smallest} {
     width: 2rem;
+  }
+
+  @media ${props => props.theme.mediaQueries.small} {
+    width: 2.3rem;
   }
 `;
 
