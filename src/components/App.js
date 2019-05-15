@@ -21,6 +21,10 @@ const InnerContainer = styled.div`
   display: flex;
   flex-direction: row;
 
+  @media ${props => props.theme.mediaQueries.largest} {
+    display: flex;
+  }
+
   @media ${props => props.theme.mediaQueries.large} {
     display: flex;
   }

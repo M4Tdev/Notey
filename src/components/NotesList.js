@@ -24,6 +24,10 @@ const Notes = styled.div`
   height: 100%;
   border-right: 0.1rem solid var(--color-border);
 
+  @media ${props => props.theme.mediaQueries.largest} {
+    width: 40rem;
+  }
+
   @media ${props => props.theme.mediaQueries.large} {
     width: 40vw;
   }
@@ -47,6 +51,11 @@ const Row = styled.div`
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 4.5rem 1rem;
   grid-template-areas: 'AddNoteButton Heading DeleteButton' '. Line .';
+
+  @media ${props => props.theme.mediaQueries.largest} {
+    grid-template-rows: 4.5rem 1rem;
+    grid-template-areas: 'AddNoteButton Heading DeleteButton' '. Line .';
+  }
 
   @media ${props => props.theme.mediaQueries.large} {
     grid-template-rows: 4.5rem 1rem;
@@ -76,6 +85,10 @@ const Heading = styled.h2`
   font-weight: 300;
   align-self: center;
   grid-area: Heading;
+
+  @media ${props => props.theme.mediaQueries.largest} {
+    font-size: 2.6rem;
+  }
 
   @media ${props => props.theme.mediaQueries.large} {
     font-size: 2.5rem;
@@ -113,6 +126,11 @@ const AddNoteButton = styled.button`
 
   &:hover {
     transform: scale(1.1) rotate(180deg);
+  }
+
+  @media ${props => props.theme.mediaQueries.largest} {
+    width: 3.3rem;
+    height: 3.3rem;
   }
 
   @media ${props => props.theme.mediaQueries.large} {
@@ -234,6 +252,11 @@ const Box = styled.div`
   flex-direction: column;
   box-shadow: 0.1rem 0.1rem 0.6rem 0.1rem var(--color-shadow);
 
+  @media ${props => props.theme.mediaQueries.largest} {
+    width: 70rem;
+    height: 30rem;
+  }
+
   @media ${props => props.theme.mediaQueries.large} {
     width: 60vw;
     height: 30vh;
@@ -264,6 +287,10 @@ const StyledH2 = styled.h2`
   font-size: 2rem;
   text-align: center;
 
+  @media ${props => props.theme.mediaQueries.largest} {
+    font-size: 2rem;
+  }
+
   @media ${props => props.theme.mediaQueries.large} {
     font-size: 2rem;
   }
@@ -286,6 +313,10 @@ const StyledButtons = styled.div`
   margin: 0 auto;
   display: flex;
   justify-content: space-evenly;
+
+  @media ${props => props.theme.mediaQueries.largest} {
+    width: 50%;
+  }
 
   @media ${props => props.theme.mediaQueries.large} {
     width: 60%;
@@ -316,6 +347,12 @@ const StyledButton = styled.button`
 
   &:hover {
     transform: translateY(-0.3rem);
+  }
+
+  @media ${props => props.theme.mediaQueries.largest} {
+    width: 12rem;
+    font-size: 1.4rem;
+    padding: 1.1rem;
   }
 
   @media ${props => props.theme.mediaQueries.large} {

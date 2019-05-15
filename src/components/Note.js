@@ -30,8 +30,12 @@ const Container = styled.li`
 `;
 
 const Title = styled.h4`
-  font-size: 1.6rem;
+  font-size: 1.7rem;
   font-weight: 500;
+
+  @media ${props => props.theme.mediaQueries.largest} {
+    font-size: 1.7rem;
+  }
 
   @media ${props => props.theme.mediaQueries.large} {
     font-size: 1.7rem;
@@ -51,9 +55,13 @@ const Title = styled.h4`
 `;
 
 const NoteContent = styled.p`
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   margin-left: 0.5rem;
   font-weight: 400;
+
+  @media ${props => props.theme.mediaQueries.largest} {
+    font-size: 1.5rem;
+  }
 
   @media ${props => props.theme.mediaQueries.large} {
     font-size: 1.5rem;
@@ -82,6 +90,11 @@ const DeleteButton = styled.button`
   right: 1rem;
   transform: translateY(-50%);
   transition: visibility 0s, opacity 0.7s ease;
+
+  @media ${props => props.theme.mediaQueries.largest} {
+    visibility: hidden;
+    opacity: 0;
+  }
 
   @media ${props => props.theme.mediaQueries.large} {
     visibility: visible;

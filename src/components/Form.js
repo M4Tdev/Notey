@@ -36,6 +36,16 @@ const Input = styled.input`
     border-color: red;
   }
 
+  @media ${props => props.theme.mediaQueries.largest} {
+    margin: 5rem auto 0;
+    width: 70%;
+    font-size: 1.8rem;
+
+    &::placeholder {
+      font-size: 1.8rem;
+    }
+  }
+
   @media ${props => props.theme.mediaQueries.large} {
     margin: 5rem auto 0;
     width: 80%;
@@ -98,6 +108,15 @@ const TextArea = styled.textarea`
     box-shadow: 0.15rem 0.15rem 0.5rem 0.2rem var(--color-error);
   }
 
+  @media ${props => props.theme.mediaQueries.largest} {
+    width: 70%;
+    font-size: 1.8rem;
+
+    &::placeholder {
+      font-size: 1.8rem;
+    }
+  }
+
   @media ${props => props.theme.mediaQueries.large} {
     width: 80%;
     font-size: 1.8rem;
@@ -147,6 +166,10 @@ const ErrorMessage = styled.span`
   font-size: 14px;
   font-weight: bold;
 
+  @media ${props => props.theme.mediaQueries.largest} {
+    width: 70%;
+  }
+
   @media ${props => props.theme.mediaQueries.large} {
     width: 80%;
   }
@@ -170,6 +193,11 @@ const Buttons = styled.div`
   margin: 3rem auto 1rem;
   flex-direction: row;
   justify-content: flex-start;
+
+  @media ${props => props.theme.mediaQueries.largest} {
+    width: 70%;
+    justify-content: flex-start;
+  }
 
   @media ${props => props.theme.mediaQueries.large} {
     width: 80%;
