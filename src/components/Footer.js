@@ -11,6 +11,11 @@ const StyledFooter = styled.div`
   background-color: var(--color-lightGrey);
   font-weight: 500;
 
+  @media ${props => props.theme.mediaQueries.large} {
+    height: 1.8rem;
+    font-size: 1.3rem;
+  }
+
   @media ${props => props.theme.mediaQueries.medium} {
     height: 1.8rem;
     font-size: 1.3rem;

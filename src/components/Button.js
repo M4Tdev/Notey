@@ -25,6 +25,10 @@ const Container = styled.button`
     margin-right: 0;
   }
 
+  @media ${props => props.theme.mediaQueries.large} {
+    width: 14rem;
+  }
+
   @media ${({ theme }) => theme.mediaQueries.medium} {
     width: 14rem;
   }

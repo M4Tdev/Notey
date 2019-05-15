@@ -12,9 +12,14 @@ const Container = styled.div`
   grid-template-rows: 4.5rem;
   grid-template-areas: '. logo user';
 
+  @media ${props => props.theme.mediaQueries.large} {
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: '. logo user';
+  }
+
   @media ${props => props.theme.mediaQueries.medium} {
     grid-template-columns: 1fr 1fr;
-    grid-template: 'logo user';
+    grid-template-areas: 'logo user';
   }
 
   @media ${props => props.theme.mediaQueries.small} {
@@ -36,6 +41,12 @@ const Logo = styled.h1`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media ${props => props.theme.mediaQueries.large} {
+    font-size: 2.6rem;
+    justify-content: center;
+    align-items: center;
+  }
 
   @media ${props => props.theme.mediaQueries.medium} {
     font-size: 2.4rem;
@@ -68,6 +79,10 @@ const User = styled.div`
   margin: 0 1.5rem 0 0;
   font-size: 1.4rem;
 
+  @media ${props => props.theme.mediaQueries.large} {
+    font-size: 1.4rem;
+  }
+
   @media ${props => props.theme.mediaQueries.medium} {
     font-size: 1.3rem;
   }
@@ -90,6 +105,10 @@ const SignOutBtn = styled.button`
 const SignOutIcon = styled(SignOutAlt)`
   color: white;
   width: 3rem;
+
+  @media ${props => props.theme.mediaQueries.large} {
+    width: 2.7rem;
+  }
 
   @media ${props => props.theme.mediaQueries.medium} {
     width: 2.5rem;

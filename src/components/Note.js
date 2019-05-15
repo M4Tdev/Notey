@@ -33,6 +33,10 @@ const Title = styled.h4`
   font-size: 1.6rem;
   font-weight: 500;
 
+  @media ${props => props.theme.mediaQueries.large} {
+    font-size: 1.6rem;
+  }
+
   @media ${props => props.theme.mediaQueries.medium} {
     font-size: 1.6rem;
   }
@@ -50,6 +54,10 @@ const NoteContent = styled.p`
   font-size: 1.4rem;
   margin-left: 0.5rem;
   font-weight: 400;
+
+  @media ${props => props.theme.mediaQueries.large} {
+    font-size: 1.2rem;
+  }
 
   @media ${props => props.theme.mediaQueries.medium} {
     font-size: 1.4rem;
@@ -74,6 +82,11 @@ const DeleteButton = styled.button`
   right: 1rem;
   transform: translateY(-50%);
   transition: visibility 0s, opacity 0.7s ease;
+
+  @media ${props => props.theme.mediaQueries.large} {
+    visibility: visible;
+    opacity: 1;
+  }
 
   @media ${props => props.theme.mediaQueries.medium} {
     visibility: visible;
