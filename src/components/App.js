@@ -33,6 +33,10 @@ const InnerContainer = styled.div`
     display: flex;
   }
 
+  @media ${props => props.theme.mediaQueries.smallMedium} {
+    display: flex;
+  }
+
   @media ${props => props.theme.mediaQueries.small} {
     display: block;
   }

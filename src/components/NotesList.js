@@ -36,6 +36,10 @@ const Notes = styled.div`
     width: 40vw;
   }
 
+  @media ${props => props.theme.mediaQueries.smallMedium} {
+    width: 45vw;
+  }
+
   @media ${props => props.theme.mediaQueries.small} {
     width: 100vw;
   }
@@ -63,6 +67,11 @@ const Row = styled.div`
   }
 
   @media ${props => props.theme.mediaQueries.medium} {
+    grid-template-rows: 4rem 1rem;
+    grid-template-areas: 'AddNoteButton Heading DeleteButton' '. Line .';
+  }
+
+  @media ${props => props.theme.mediaQueries.smallMedium} {
     grid-template-rows: 4rem 1rem;
     grid-template-areas: 'AddNoteButton Heading DeleteButton' '. Line .';
   }
@@ -96,6 +105,10 @@ const Heading = styled.h2`
 
   @media ${props => props.theme.mediaQueries.medium} {
     font-size: 2.5rem;
+  }
+
+  @media ${props => props.theme.mediaQueries.smallMedium} {
+    font-size: 2.4rem;
   }
 
   @media ${props => props.theme.mediaQueries.small} {
@@ -139,6 +152,11 @@ const AddNoteButton = styled.button`
   }
 
   @media ${props => props.theme.mediaQueries.medium} {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  @media ${props => props.theme.mediaQueries.smallMedium} {
     width: 4rem;
     height: 4rem;
   }
@@ -269,6 +287,12 @@ const Box = styled.div`
     padding: 1rem;
   }
 
+  @media ${props => props.theme.mediaQueries.smallMedium} {
+    width: 60vw;
+    height: 35vh;
+    padding: 1rem;
+  }
+
   @media ${props => props.theme.mediaQueries.small} {
     width: 80vw;
     height: 30vh;
@@ -299,6 +323,10 @@ const StyledH2 = styled.h2`
     font-size: 1.8rem;
   }
 
+  @media ${props => props.theme.mediaQueries.smallMedium} {
+    font-size: 1.7rem;
+  }
+
   @media ${props => props.theme.mediaQueries.small} {
     font-size: 1.7rem;
   }
@@ -324,6 +352,10 @@ const StyledButtons = styled.div`
 
   @media ${props => props.theme.mediaQueries.medium} {
     width: 70%;
+  }
+
+  @media ${props => props.theme.mediaQueries.smallMedium} {
+    width: 80%;
   }
 
   @media ${props => props.theme.mediaQueries.small} {

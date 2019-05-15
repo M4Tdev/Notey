@@ -66,6 +66,16 @@ const Input = styled.input`
     }
   }
 
+  @media ${props => props.theme.mediaQueries.smallMedium} {
+    margin: 4rem auto 0;
+    width: 95%;
+    font-size: 1.6rem;
+
+    &::placeholder {
+      font-size: 1.6rem;
+    }
+  }
+
   @media ${props => props.theme.mediaQueries.small} {
     margin: 3rem auto 0;
     width: 90%;
@@ -135,6 +145,15 @@ const TextArea = styled.textarea`
     }
   }
 
+  @media ${props => props.theme.mediaQueries.smallMedium} {
+    width: 95%;
+    font-size: 1.6rem;
+
+    &::placeholder {
+      font-size: 1.6rem;
+    }
+  }
+
   @media ${props => props.theme.mediaQueries.small} {
     width: 90%;
     font-size: 1.6rem;
@@ -178,6 +197,10 @@ const ErrorMessage = styled.span`
     width: 80%;
   }
 
+  @media ${props => props.theme.mediaQueries.smallMedium} {
+    width: 95%;
+  }
+
   @media ${({ theme }) => theme.mediaQueries.small} {
     width: 90%;
   }
@@ -207,6 +230,11 @@ const Buttons = styled.div`
   @media ${props => props.theme.mediaQueries.medium} {
     width: 80%;
     justify-content: flex-start;
+  }
+
+  @media ${props => props.theme.mediaQueries.smallMedium} {
+    width: 95%;
+    justify-content: center;
   }
 
   @media ${({ theme }) => theme.mediaQueries.small} {

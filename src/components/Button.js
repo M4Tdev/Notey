@@ -37,6 +37,10 @@ const Container = styled.button`
     width: 14rem;
   }
 
+  @media ${({ theme }) => theme.mediaQueries.smallMedium} {
+    width: 13rem;
+  }
+
   @media ${({ theme }) => theme.mediaQueries.small} {
     width: 13rem;
   }
