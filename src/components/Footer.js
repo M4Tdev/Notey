@@ -12,8 +12,8 @@ const StyledFooter = styled.div`
   font-weight: 500;
 
   @media ${props => props.theme.mediaQueries.large} {
-    height: 1.8rem;
-    font-size: 1.3rem;
+    height: 2rem;
+    font-size: 1.4rem;
   }
 
   @media ${props => props.theme.mediaQueries.medium} {

@@ -34,7 +34,7 @@ const Title = styled.h4`
   font-weight: 500;
 
   @media ${props => props.theme.mediaQueries.large} {
-    font-size: 1.6rem;
+    font-size: 1.7rem;
   }
 
   @media ${props => props.theme.mediaQueries.medium} {
@@ -56,7 +56,7 @@ const NoteContent = styled.p`
   font-weight: 400;
 
   @media ${props => props.theme.mediaQueries.large} {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
   }
 
   @media ${props => props.theme.mediaQueries.medium} {

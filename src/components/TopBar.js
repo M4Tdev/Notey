@@ -43,7 +43,7 @@ const Logo = styled.h1`
   align-items: center;
 
   @media ${props => props.theme.mediaQueries.large} {
-    font-size: 2.6rem;
+    font-size: 2.7rem;
     justify-content: center;
     align-items: center;
   }
@@ -107,7 +107,7 @@ const SignOutIcon = styled(SignOutAlt)`
   width: 3rem;
 
   @media ${props => props.theme.mediaQueries.large} {
-    width: 2.7rem;
+    width: 2.8rem;
   }
 
   @media ${props => props.theme.mediaQueries.medium} {

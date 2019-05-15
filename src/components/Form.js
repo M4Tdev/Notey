@@ -39,10 +39,10 @@ const Input = styled.input`
   @media ${props => props.theme.mediaQueries.large} {
     margin: 5rem auto 0;
     width: 80%;
-    font-size: 1.7rem;
+    font-size: 1.8rem;
 
     &::placeholder {
-      font-size: 1.7rem;
+      font-size: 1.8rem;
     }
   }
 
@@ -100,10 +100,10 @@ const TextArea = styled.textarea`
 
   @media ${props => props.theme.mediaQueries.large} {
     width: 80%;
-    font-size: 1.6rem;
+    font-size: 1.8rem;
 
     &::placeholder {
-      font-size: 1.6rem;
+      font-size: 1.8rem;
     }
   }
 

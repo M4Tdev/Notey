@@ -25,7 +25,7 @@ const Notes = styled.div`
   border-right: 0.1rem solid var(--color-border);
 
   @media ${props => props.theme.mediaQueries.large} {
-    width: 35vw;
+    width: 40vw;
   }
 
   @media ${props => props.theme.mediaQueries.medium} {
@@ -236,7 +236,7 @@ const Box = styled.div`
 
   @media ${props => props.theme.mediaQueries.large} {
     width: 60vw;
-    height: 40vh;
+    height: 30vh;
     padding: 1rem;
   }
 
@@ -265,7 +265,7 @@ const StyledH2 = styled.h2`
   text-align: center;
 
   @media ${props => props.theme.mediaQueries.large} {
-    font-size: 1.9rem;
+    font-size: 2rem;
   }
 
   @media ${props => props.theme.mediaQueries.medium} {
