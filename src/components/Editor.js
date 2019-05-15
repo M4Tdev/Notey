@@ -9,6 +9,7 @@ import EditNote from './EditNote';
 const Container = styled.div`
   text-align: center;
   width: calc(100% - 40rem);
+  margin: 0 auto;
 `;
 
 class Editor extends React.Component {

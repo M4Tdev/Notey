@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import reduxThunk from 'redux-thunk';
+import { ThemeProvider } from 'styled-components';
 
 import Router from './components/Router';
 import rootReducer from './reducers';
-import GlobalStyles from './utils/globalStyles';
+import GlobalStyles from './utils/global';
+import theme from './utils/theme';
 
 const composeEnhancers =
   process.env.NODE_ENV === 'development'
@@ -20,8 +22,12 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <GlobalStyles />
-    <Router />
+    <ThemeProvider theme={theme}>
+      <>
+        <Router />
+        <GlobalStyles />
+      </>
+    </ThemeProvider>
   </Provider>,
   document.querySelector('#root')
 );

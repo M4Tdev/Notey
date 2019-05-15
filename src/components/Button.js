@@ -8,10 +8,10 @@ const Container = styled.button`
   display: inline-block;
   margin-right: 2rem;
   background-image: ${props =>
-    props.bgColor === '#4285F4'
-      ? 'linear-gradient(to bottom right, #5c9fff, #4285f4)'
-      : 'linear-gradient(to bottom right, #EDEDED, #D4D4D4)'};
-  color: ${props => (props.bgColor === '#4285F4' ? 'white' : 'black')};
+    props.bgColor === 'primary'
+      ? `linear-gradient(to bottom right, var(--color-lightMain), var(--color-main))`
+      : `linear-gradient(to bottom right, var(--color-deleteBtnLight), var(--color-deleteBtn))`};
+  color: ${props => (props.bgColor === 'primary' ? 'white' : 'black')};
   font-weight: 500;
   box-shadow: 0 0.4rem 0.6rem rgba(0, 0, 0, 0.25);
   border: none;
@@ -23,6 +23,30 @@ const Container = styled.button`
 
   &:last-child {
     margin-right: 0;
+  }
+
+  @media ${props => props.theme.mediaQueries.largest} {
+    width: 15rem;
+  }
+
+  @media ${props => props.theme.mediaQueries.large} {
+    width: 14rem;
+  }
+
+  @media ${({ theme }) => theme.mediaQueries.medium} {
+    width: 14rem;
+  }
+
+  @media ${({ theme }) => theme.mediaQueries.smallMedium} {
+    width: 13rem;
+  }
+
+  @media ${({ theme }) => theme.mediaQueries.small} {
+    width: 13rem;
+  }
+
+  @media ${({ theme }) => theme.mediaQueries.smallest} {
+    width: 12rem;
   }
 `;
 

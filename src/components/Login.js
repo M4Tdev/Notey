@@ -19,14 +19,14 @@ const Heading = styled.h1`
   font-weight: bold;
   font-size: 4.6rem;
   letter-spacing: 0.2em;
-  color: #5b5b5b;
+  color: var(--color-grey);
 `;
 
 const Button = styled.button`
-  background-color: #4285f4;
+  background-color: var(--color-main);
   border-radius: 1rem;
   border: none;
-  color: #fff;
+  color: var(--color-white);
   padding: 1.5rem 4.5rem;
   margin: 11.2rem 0;
   position: relative;
