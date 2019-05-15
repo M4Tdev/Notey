@@ -11,14 +11,19 @@ const StyledFooter = styled.div`
   background-color: var(--color-lightGrey);
   font-weight: 500;
 
-  @media ${props => props.theme.mediaQueries.smallest} {
-    height: 1.5rem;
-    font-size: 1rem;
+  @media ${props => props.theme.mediaQueries.medium} {
+    height: 1.8rem;
+    font-size: 1.3rem;
   }
 
   @media ${props => props.theme.mediaQueries.small} {
     height: 1.7rem;
     font-size: 1.2rem;
+  }
+
+  @media ${props => props.theme.mediaQueries.smallest} {
+    height: 1.5rem;
+    font-size: 1rem;
   }
 `;
 

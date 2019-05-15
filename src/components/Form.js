@@ -36,9 +36,9 @@ const Input = styled.input`
     border-color: red;
   }
 
-  @media ${props => props.theme.mediaQueries.smallest} {
-    margin: 2rem auto 0;
-    width: 90%;
+  @media ${props => props.theme.mediaQueries.medium} {
+    margin: 4rem auto 0;
+    width: 80%;
     font-size: 1.6rem;
 
     &::placeholder {
@@ -48,6 +48,16 @@ const Input = styled.input`
 
   @media ${props => props.theme.mediaQueries.small} {
     margin: 3rem auto 0;
+    width: 90%;
+    font-size: 1.6rem;
+
+    &::placeholder {
+      font-size: 1.6rem;
+    }
+  }
+
+  @media ${props => props.theme.mediaQueries.smallest} {
+    margin: 2rem auto 0;
     width: 90%;
     font-size: 1.6rem;
 
@@ -78,8 +88,8 @@ const TextArea = styled.textarea`
     box-shadow: 0.15rem 0.15rem 0.5rem 0.2rem var(--color-error);
   }
 
-  @media ${props => props.theme.mediaQueries.smallest} {
-    width: 90%;
+  @media ${props => props.theme.mediaQueries.medium} {
+    width: 80%;
     font-size: 1.6rem;
 
     &::placeholder {
@@ -88,6 +98,15 @@ const TextArea = styled.textarea`
   }
 
   @media ${props => props.theme.mediaQueries.small} {
+    width: 90%;
+    font-size: 1.6rem;
+
+    &::placeholder {
+      font-size: 1.6rem;
+    }
+  }
+
+  @media ${props => props.theme.mediaQueries.smallest} {
     width: 90%;
     font-size: 1.6rem;
 
@@ -109,11 +128,15 @@ const ErrorMessage = styled.span`
   font-size: 14px;
   font-weight: bold;
 
-  @media ${({ theme }) => theme.mediaQueries.smallest} {
-    width: 90%;
+  @media ${props => props.theme.mediaQueries.medium} {
+    width: 80%;
   }
 
   @media ${({ theme }) => theme.mediaQueries.small} {
+    width: 90%;
+  }
+
+  @media ${({ theme }) => theme.mediaQueries.smallest} {
     width: 90%;
   }
 `;
@@ -125,14 +148,19 @@ const Buttons = styled.div`
   flex-direction: row;
   justify-content: flex-start;
 
-  @media ${({ theme }) => theme.mediaQueries.smallest} {
-    width: 90%;
-    margin: 2.5rem auto 1rem;
-    justify-content: center;
+  @media ${props => props.theme.mediaQueries.medium} {
+    width: 80%;
+    justify-content: flex-start;
   }
 
   @media ${({ theme }) => theme.mediaQueries.small} {
     width: 90%;
+    justify-content: center;
+  }
+
+  @media ${({ theme }) => theme.mediaQueries.smallest} {
+    width: 90%;
+    margin: 2.5rem auto 1rem;
     justify-content: center;
   }
 `;

@@ -21,11 +21,15 @@ const InnerContainer = styled.div`
   display: flex;
   flex-direction: row;
 
-  @media ${props => props.theme.mediaQueries.smallest} {
-    display: block;
+  @media ${props => props.theme.mediaQueries.medium} {
+    display: flex;
   }
 
   @media ${props => props.theme.mediaQueries.small} {
+    display: block;
+  }
+
+  @media ${props => props.theme.mediaQueries.smallest} {
     display: block;
   }
 `;

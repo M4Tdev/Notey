@@ -25,11 +25,16 @@ const Container = styled.button`
     margin-right: 0;
   }
 
-  @media ${({ theme }) => theme.mediaQueries.smallest} {
-    width: 12rem;
+  @media ${({ theme }) => theme.mediaQueries.medium} {
+    width: 14rem;
   }
+
   @media ${({ theme }) => theme.mediaQueries.small} {
     width: 13rem;
+  }
+
+  @media ${({ theme }) => theme.mediaQueries.smallest} {
+    width: 12rem;
   }
 `;
 

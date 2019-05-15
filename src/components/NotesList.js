@@ -24,11 +24,15 @@ const Notes = styled.div`
   height: 100%;
   border-right: 0.1rem solid var(--color-border);
 
-  @media ${props => props.theme.mediaQueries.smallest} {
-    width: 100vw;
+  @media ${props => props.theme.mediaQueries.medium} {
+    width: 40vw;
   }
 
   @media ${props => props.theme.mediaQueries.small} {
+    width: 100vw;
+  }
+
+  @media ${props => props.theme.mediaQueries.smallest} {
     width: 100vw;
   }
 `;
@@ -40,12 +44,17 @@ const Row = styled.div`
   grid-template-rows: 4.5rem 1rem;
   grid-template-areas: 'AddNoteButton Heading DeleteButton' '. Line .';
 
-  @media ${props => props.theme.mediaQueries.smallest} {
+  @media ${props => props.theme.mediaQueries.medium} {
+    grid-template-rows: 4rem 1rem;
+    grid-template-areas: 'AddNoteButton Heading DeleteButton' '. Line .';
+  }
+
+  @media ${props => props.theme.mediaQueries.small} {
     grid-template-rows: 4rem 0.7rem;
     grid-template-areas: '. Heading DeleteButton' '. Line .';
   }
 
-  @media ${props => props.theme.mediaQueries.small} {
+  @media ${props => props.theme.mediaQueries.smallest} {
     grid-template-rows: 4rem 0.7rem;
     grid-template-areas: '. Heading DeleteButton' '. Line .';
   }
@@ -59,12 +68,16 @@ const Heading = styled.h2`
   align-self: center;
   grid-area: Heading;
 
-  @media ${props => props.theme.mediaQueries.smallest} {
-    font-size: 2.3rem;
+  @media ${props => props.theme.mediaQueries.medium} {
+    font-size: 2.5rem;
   }
 
   @media ${props => props.theme.mediaQueries.small} {
     font-size: 2.4rem;
+  }
+
+  @media ${props => props.theme.mediaQueries.smallest} {
+    font-size: 2.3rem;
   }
 `;
 
@@ -89,20 +102,25 @@ const AddNoteButton = styled.button`
     transform: scale(1.1) rotate(180deg);
   }
 
-  @media ${props => props.theme.mediaQueries.smallest} {
-    position: absolute;
-    bottom: 3rem;
-    right: 3rem;
-    width: 5rem;
-    height: 5rem;
-    z-index: 10;
-    margin-left: 0;
+  @media ${props => props.theme.mediaQueries.medium} {
+    width: 4rem;
+    height: 4rem;
   }
 
   @media ${props => props.theme.mediaQueries.small} {
     position: absolute;
     bottom: 4rem;
     right: 4rem;
+    width: 5rem;
+    height: 5rem;
+    z-index: 10;
+    margin-left: 0;
+  }
+
+  @media ${props => props.theme.mediaQueries.smallest} {
+    position: absolute;
+    bottom: 3rem;
+    right: 3rem;
     width: 5rem;
     height: 5rem;
     z-index: 10;
@@ -198,16 +216,22 @@ const Box = styled.div`
   flex-direction: column;
   box-shadow: 0.1rem 0.1rem 0.6rem 0.1rem var(--color-shadow);
 
-  @media ${props => props.theme.mediaQueries.smallest} {
-    width: 70vw;
-    height: 30vh;
-    padding: 0.5rem;
+  @media ${props => props.theme.mediaQueries.medium} {
+    width: 60vw;
+    height: 35vh;
+    padding: 1rem;
   }
 
   @media ${props => props.theme.mediaQueries.small} {
     width: 80vw;
     height: 30vh;
     padding: 1rem;
+  }
+
+  @media ${props => props.theme.mediaQueries.smallest} {
+    width: 70vw;
+    height: 30vh;
+    padding: 0.5rem;
   }
 `;
 
@@ -216,12 +240,16 @@ const StyledH2 = styled.h2`
   font-size: 2rem;
   text-align: center;
 
-  @media ${props => props.theme.mediaQueries.smallest} {
-    font-size: 1.5rem;
+  @media ${props => props.theme.mediaQueries.medium} {
+    font-size: 1.8rem;
   }
 
   @media ${props => props.theme.mediaQueries.small} {
     font-size: 1.7rem;
+  }
+
+  @media ${props => props.theme.mediaQueries.smallest} {
+    font-size: 1.5rem;
   }
 `;
 
@@ -231,11 +259,15 @@ const StyledButtons = styled.div`
   display: flex;
   justify-content: space-evenly;
 
-  @media ${props => props.theme.mediaQueries.smallest} {
-    width: 100%;
+  @media ${props => props.theme.mediaQueries.medium} {
+    width: 70%;
   }
 
   @media ${props => props.theme.mediaQueries.small} {
+    width: 100%;
+  }
+
+  @media ${props => props.theme.mediaQueries.smallest} {
     width: 100%;
   }
 `;
@@ -254,16 +286,22 @@ const StyledButton = styled.button`
     transform: translateY(-0.3rem);
   }
 
-  @media ${props => props.theme.mediaQueries.smallest} {
-    width: 10rem;
-    font-size: 1.3rem;
-    padding: 1rem;
+  @media ${props => props.theme.mediaQueries.medium} {
+    width: 12rem;
+    font-size: 1.4rem;
+    padding: 1.1rem;
   }
 
   @media ${props => props.theme.mediaQueries.small} {
     width: 11rem;
     font-size: 1.4rem;
     padding: 1.1rem;
+  }
+
+  @media ${props => props.theme.mediaQueries.smallest} {
+    width: 10rem;
+    font-size: 1.3rem;
+    padding: 1rem;
   }
 `;
 
