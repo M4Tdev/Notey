@@ -429,6 +429,15 @@ const StyledCancelButton = styled(StyledButton)`
   color: var(--color-cancelBtn);
 `;
 
+const NoNotesMessage = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 5.5rem;
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 1.1;
+`;
+
 class NotesList extends React.Component {
   state = {
     showModal: false,
@@ -474,6 +483,8 @@ class NotesList extends React.Component {
     this.setState({ showModal: false, showLoader: false });
   };
 
+  isNoNotes = () => Object.keys(this.props.notes).length === 0;
+
   render() {
     if (this.props.notesFetched === false) {
       return (
@@ -495,6 +506,30 @@ class NotesList extends React.Component {
             <Line />
           </Row>
           <Loader />
+        </Notes>
+      );
+    }
+
+    if (this.props.notesFetched === true && this.isNoNotes()) {
+      return (
+        <Notes>
+          <Row>
+            <Heading>Notes</Heading>
+            <AddNoteButton
+              onClick={
+                this.props.isMobile
+                  ? this.createNewNoteMobile
+                  : this.createNewNote
+              }
+            >
+              <PlusIcon />
+            </AddNoteButton>
+            <DeleteAllNotes onClick={this.showConfirmModal}>
+              Delete All
+            </DeleteAllNotes>
+            <Line />
+          </Row>
+          <NoNotesMessage>You don't have any notes yet.</NoNotesMessage>
         </Notes>
       );
     }
