@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { TrashAlt } from 'styled-icons/fa-regular';
 import _ from 'lodash';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
 import history from '../history';
 
@@ -167,6 +168,16 @@ const Note = props => {
       </NoteContent>
     </Container>
   );
+};
+
+Note.propTypes = {
+  deleteNote: PropTypes.func,
+  id: PropTypes.string,
+  clearSelectedNote: PropTypes.func,
+  showMenu: PropTypes.func,
+  isMobile: PropTypes.bool,
+  noteTitle: PropTypes.string,
+  noteContent: PropTypes.string,
 };
 
 export default connect(

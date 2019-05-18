@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const Container = styled.button`
   width: 14rem;
@@ -67,5 +68,11 @@ const Button = props => (
     </Container>
   </>
 );
+
+Button.propTypes = {
+  btnType: PropTypes.string,
+  bgColor: PropTypes.string,
+  content: PropTypes.string,
+};
 
 export default Button;

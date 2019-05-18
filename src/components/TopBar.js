@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { SignOutAlt } from 'styled-icons/fa-solid';
+import PropTypes from 'prop-types';
 
 const Container = styled.div`
   width: 100vw;
@@ -157,5 +158,10 @@ class TopBar extends React.Component {
     );
   }
 }
+
+TopBar.propTypes = {
+  userEmail: PropTypes.string,
+  onSignOut: PropTypes.func,
+};
 
 export default TopBar;
