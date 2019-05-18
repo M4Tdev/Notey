@@ -433,9 +433,31 @@ const NoNotesMessage = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 5.5rem;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   font-weight: 500;
   letter-spacing: 1.1;
+
+  @media ${props => props.theme.mediaQueries.large} {
+    font-size: 1.6rem;
+  }
+
+  @media ${props => props.theme.mediaQueries.medium} {
+    font-size: 1.4rem;
+  }
+
+  @media ${props => props.theme.mediaQueries.small} {
+    font-size: 1.6rem;
+    margin-top: 0;
+    height: calc(100% - 4.7rem);
+    align-items: center;
+  }
+
+  @media ${props => props.theme.mediaQueries.smallest} {
+    font-size: 1.5rem;
+    margin-top: 0;
+    height: calc(100% - 4.7rem);
+    align-items: center;
+  }
 `;
 
 class NotesList extends React.Component {
