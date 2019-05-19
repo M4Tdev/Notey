@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import styled from 'styled-components';
 import _ from 'lodash';
 import { Plus } from 'styled-icons/fa-solid';
+import PropTypes from 'prop-types';
 import history from '../history';
 import Loader from './Loader';
 
@@ -620,6 +621,17 @@ class NotesList extends React.Component {
     );
   }
 }
+
+NotesList.propTypes = {
+  fetchNotes: PropTypes.func,
+  deleteNote: PropTypes.func,
+  deleteNotes: PropTypes.func,
+  clearSelectedNote: PropTypes.func,
+  showMenu: PropTypes.func,
+  notes: PropTypes.object,
+  notesFetched: PropTypes.bool,
+  isMobile: PropTypes.bool,
+};
 
 const mapStateToProps = state => ({
   notes: state.notes.notes,

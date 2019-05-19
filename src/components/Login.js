@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Google } from 'styled-icons/fa-brands';
 import firebase from 'firebase/app';
+import PropTypes from 'prop-types';
 import base from '../base';
 
 import ModalLoader from './ModalLoader';
@@ -62,6 +63,10 @@ const Login = props => {
       </Button>
     </Container>
   );
+};
+
+Login.propTypes = {
+  isSignedIn: PropTypes.bool,
 };
 
 export default Login;

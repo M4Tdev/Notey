@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 import base from '../base';
 
 // Components
@@ -112,6 +113,12 @@ class App extends React.Component {
     );
   }
 }
+
+App.propTypes = {
+  isSignedIn: PropTypes.bool,
+  userEmail: PropTypes.string,
+  location: PropTypes.object.isRequired,
+};
 
 const mapStateToProps = state => ({
   userEmail: state.auth.userEmail,

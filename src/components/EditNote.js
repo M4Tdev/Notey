@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 // Action Creator
 import { fetchNote, editNote, fetchNotes, deleteNote } from '../actions';
@@ -70,6 +71,19 @@ const EditNote = props => {
       />
     </StyledDiv>
   );
+};
+
+EditNote.propTypes = {
+  fetchNote: PropTypes.func,
+  editNote: PropTypes.func,
+  fetchNotes: PropTypes.func,
+  deleteNote: PropTypes.func,
+  note: PropTypes.shape({
+    id: PropTypes.string,
+    note: PropTypes.string,
+    timeStamp: PropTypes.string,
+    title: PropTypes.string,
+  }),
 };
 
 const mapStateToProp = state => ({

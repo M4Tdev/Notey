@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 // Action Creators
 import { createNote, fetchNotes } from '../actions';
@@ -38,6 +39,11 @@ const CreateNote = props => {
       <Form onSubmit={onSubmit} />
     </StyledDiv>
   );
+};
+
+CreateNote.propTypes = {
+  createNote: PropTypes.func,
+  fetchNotes: PropTypes.func,
 };
 
 export default connect(
