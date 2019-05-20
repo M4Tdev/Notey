@@ -15,5 +15,4 @@ const Loader = () => (
     <div className="loader" />
   </Container>
 );
-
 export default Loader;

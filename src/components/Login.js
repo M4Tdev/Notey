@@ -3,11 +3,12 @@ import styled from 'styled-components';
 import { Google } from 'styled-icons/fa-brands';
 import firebase from 'firebase/app';
 import PropTypes from 'prop-types';
+import { useSpring, animated } from 'react-spring';
 import base from '../base';
 
 import ModalLoader from './ModalLoader';
 
-const Container = styled.div`
+const Container = styled(animated.div)`
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -51,11 +52,18 @@ const onSignIn = () => {
 };
 
 const Login = props => {
+  const fade = useSpring({
+    config: { duration: 250 },
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+  });
+
   if (props.isSignedIn === null) {
     return <ModalLoader />;
   }
+
   return (
-    <Container>
+    <Container style={fade}>
       <Heading>Notey</Heading>
       <Button onClick={onSignIn}>
         <GoogleIcon />
