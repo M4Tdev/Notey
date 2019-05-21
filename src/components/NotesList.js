@@ -122,7 +122,7 @@ const Heading = styled.h2`
   }
 `;
 
-const AddNoteButton = styled.button`
+const AddNoteButton = styled(animated.button)`
   background-color: var(--color-green);
   border: none;
   border-radius: 50%;
@@ -191,7 +191,7 @@ const PlusIcon = styled(Plus)`
   transform: scale(1.3);
 `;
 
-const DeleteAllNotes = styled.button`
+const DeleteAllNotes = styled(animated.button)`
   padding: 0.6rem;
   background-color: transparent;
   border: 1px solid red;
@@ -431,7 +431,7 @@ const StyledCancelButton = styled(StyledButton)`
   color: var(--color-cancelBtn);
 `;
 
-const NoNotesMessage = styled.div`
+const NoNotesMessage = styled(animated.div)`
   display: flex;
   justify-content: center;
   margin-top: 5.5rem;
@@ -469,6 +469,20 @@ const NotesList = props => {
   useEffect(() => {
     props.fetchNotes();
   }, [props]);
+
+  const fade = useSpring({
+    config: { duration: 500 },
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+    delay: 250,
+  });
+
+  const fadeZoom = useSpring({
+    config: { duration: 250 },
+    from: { opacity: 0, transform: 'scale(0)' },
+    to: { opacity: 1, transform: 'scale(1)' },
+    delay: 250,
+  });
 
   const deleteNote = async (e, id) => {
     e.stopPropagation();
@@ -514,11 +528,14 @@ const NotesList = props => {
         <Row>
           <Heading>Notes</Heading>
           <AddNoteButton
+            style={fade}
             onClick={props.isMobile ? createNewNoteMobile : createNewNote}
           >
             <PlusIcon />
           </AddNoteButton>
-          <DeleteAllNotes onClick={showConfirmModal}>Delete All</DeleteAllNotes>
+          <DeleteAllNotes style={fade} onClick={showConfirmModal}>
+            Delete All
+          </DeleteAllNotes>
           <Line />
         </Row>
         <Loader />
@@ -532,14 +549,19 @@ const NotesList = props => {
         <Row>
           <Heading>Notes</Heading>
           <AddNoteButton
+            style={fade}
             onClick={props.isMobile ? createNewNoteMobile : createNewNote}
           >
             <PlusIcon />
           </AddNoteButton>
-          <DeleteAllNotes onClick={showConfirmModal}>Delete All</DeleteAllNotes>
+          <DeleteAllNotes style={fade} onClick={showConfirmModal}>
+            Delete All
+          </DeleteAllNotes>
           <Line />
         </Row>
-        <NoNotesMessage>You don't have any notes yet.</NoNotesMessage>
+        <NoNotesMessage style={fadeZoom}>
+          You don't have any notes yet.
+        </NoNotesMessage>
       </Notes>
     );
   }
@@ -575,11 +597,14 @@ const NotesList = props => {
       <Row>
         <Heading>Notes</Heading>
         <AddNoteButton
+          style={fade}
           onClick={props.isMobile ? createNewNoteMobile : createNewNote}
         >
           <PlusIcon />
         </AddNoteButton>
-        <DeleteAllNotes onClick={showConfirmModal}>Delete All</DeleteAllNotes>
+        <DeleteAllNotes style={fade} onClick={showConfirmModal}>
+          Delete All
+        </DeleteAllNotes>
         <Line />
       </Row>
       <List>
