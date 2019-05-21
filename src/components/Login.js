@@ -17,14 +17,14 @@ const Container = styled(animated.div)`
   align-items: center;
 `;
 
-const Heading = styled.h1`
+const Heading = styled(animated.h1)`
   font-weight: bold;
   font-size: 4.6rem;
   letter-spacing: 0.2em;
   color: var(--color-grey);
 `;
 
-const Button = styled.button`
+const Button = styled(animated.button)`
   background-color: var(--color-main);
   border-radius: 1rem;
   border: none;
@@ -58,14 +58,26 @@ const Login = props => {
     to: { opacity: 1 },
   });
 
+  const leftSlide = useSpring({
+    config: { duration: 550 },
+    from: { transform: 'translateX(-10rem)', opacity: 0 },
+    to: { transform: 'translateX(0)', opacity: 1 },
+  });
+
+  const rightSlide = useSpring({
+    config: { duration: 550 },
+    from: { transform: 'translateX(10rem)', opacity: 0 },
+    to: { transform: 'translateX(0)', opacity: 1 },
+  });
+
   if (props.isSignedIn === null) {
     return <ModalLoader />;
   }
 
   return (
     <Container style={fade}>
-      <Heading>Notey</Heading>
-      <Button onClick={onSignIn}>
+      <Heading style={leftSlide}>Notey</Heading>
+      <Button style={rightSlide} onClick={onSignIn}>
         <GoogleIcon />
         Login with Google
       </Button>
