@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { SignOutAlt } from 'styled-icons/fa-solid';
 import PropTypes from 'prop-types';
+import { useSpring, animated } from 'react-spring';
 
 const Container = styled.div`
   width: 100vw;
@@ -39,7 +40,7 @@ const Container = styled.div`
   }
 `;
 
-const Logo = styled.h1`
+const Logo = styled(animated.h1)`
   font-size: 2.8rem;
   font-weight: bold;
   letter-spacing: 0.2em;
@@ -143,21 +144,25 @@ const SignOutIcon = styled(SignOutAlt)`
   }
 `;
 
-class TopBar extends React.Component {
-  render() {
-    return (
-      <Container>
-        <Logo>Notey</Logo>
-        <User>
-          {this.props.userEmail}
-          <SignOutBtn onClick={this.props.onSignOut}>
-            <SignOutIcon />
-          </SignOutBtn>
-        </User>
-      </Container>
-    );
-  }
-}
+const TopBar = props => {
+  const slideDown = useSpring({
+    config: { duration: 500 },
+    from: { marginTop: '-6rem', opacity: 0 },
+    to: { marginTop: '0', opacity: 1 },
+  });
+
+  return (
+    <Container>
+      <Logo style={slideDown}>Notey</Logo>
+      <User>
+        {props.userEmail}
+        <SignOutBtn onClick={props.onSignOut}>
+          <SignOutIcon />
+        </SignOutBtn>
+      </User>
+    </Container>
+  );
+};
 
 TopBar.propTypes = {
   userEmail: PropTypes.string,
