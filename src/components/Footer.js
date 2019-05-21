@@ -1,7 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useSpring, animated } from 'react-spring';
 
-const StyledFooter = styled.div`
+const StyledFooter = styled(animated.div)`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,6 +38,13 @@ const StyledFooter = styled.div`
   }
 `;
 
-const Footer = () => <StyledFooter>&copy; Mateusz Lesiuk</StyledFooter>;
+const Footer = () => {
+  const fade = useSpring({
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+  });
+
+  return <StyledFooter style={fade}>&copy; Mateusz Lesiuk</StyledFooter>;
+};
 
 export default Footer;

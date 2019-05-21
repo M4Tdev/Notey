@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import styled from 'styled-components';
 import _ from 'lodash';
 import { Plus } from 'styled-icons/fa-solid';
 import PropTypes from 'prop-types';
+import { useSpring, animated } from 'react-spring';
 import history from '../history';
 import Loader from './Loader';
 
@@ -121,7 +122,7 @@ const Heading = styled.h2`
   }
 `;
 
-const AddNoteButton = styled.button`
+const AddNoteButton = styled(animated.button)`
   background-color: var(--color-green);
   border: none;
   border-radius: 50%;
@@ -190,7 +191,7 @@ const PlusIcon = styled(Plus)`
   transform: scale(1.3);
 `;
 
-const DeleteAllNotes = styled.button`
+const DeleteAllNotes = styled(animated.button)`
   padding: 0.6rem;
   background-color: transparent;
   border: 1px solid red;
@@ -430,7 +431,7 @@ const StyledCancelButton = styled(StyledButton)`
   color: var(--color-cancelBtn);
 `;
 
-const NoNotesMessage = styled.div`
+const NoNotesMessage = styled(animated.div)`
   display: flex;
   justify-content: center;
   margin-top: 5.5rem;
@@ -461,166 +462,142 @@ const NoNotesMessage = styled.div`
   }
 `;
 
-class NotesList extends React.Component {
-  state = {
-    showModal: false,
-    showLoader: false,
-  };
+const NotesList = props => {
+  const [showModal, setShowModal] = useState(false);
+  const [showLoader, setShowLoader] = useState(false);
 
-  componentDidMount() {
-    this.props.fetchNotes();
-  }
+  /* eslint-disable */
+  useEffect(() => {
+    props.fetchNotes();
+  }, []);
+  /* eslint-enable */
 
-  deleteNote = async (e, id) => {
+  const fade = useSpring({
+    config: { duration: 500 },
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+    delay: 250,
+  });
+
+  const fadeZoom = useSpring({
+    config: { duration: 250 },
+    from: { opacity: 0, transform: 'scale(0)' },
+    to: { opacity: 1, transform: 'scale(1)' },
+    delay: 250,
+  });
+
+  const deleteNote = async (e, id) => {
     e.stopPropagation();
-    await this.props.deleteNote(id);
-    this.props.fetchNotes();
+    await props.deleteNote(id);
+    props.fetchNotes();
   };
 
-  createNewNote = () => {
+  const createNewNote = () => {
     history.push('/notes');
-    this.props.clearSelectedNote();
+    props.clearSelectedNote();
   };
 
-  createNewNoteMobile = () => {
+  const createNewNoteMobile = () => {
     history.push('/notes');
-    this.props.clearSelectedNote();
-    this.props.showMenu();
+    props.clearSelectedNote();
+    props.showMenu();
   };
 
-  showConfirmModal = () => {
-    if (!this.state.showModal) {
-      this.setState({ showModal: true });
+  const showConfirmModal = () => {
+    if (!showModal) {
+      setShowModal(true);
     }
   };
 
-  closeConfirmModal = () => {
-    if (this.state.showModal) {
-      this.setState({ showModal: false });
+  const closeConfirmModal = () => {
+    if (showModal) {
+      setShowModal(false);
     }
   };
 
-  handleConfirmButton = async () => {
-    this.setState({ showLoader: true });
-    await this.props.deleteNotes();
-    this.setState({ showModal: false, showLoader: false });
+  const handleConfirmButton = async () => {
+    setShowLoader(true);
+    await props.deleteNotes();
+    setShowModal(false);
+    setShowLoader(false);
   };
 
-  isNoNotes = () => Object.keys(this.props.notes).length === 0;
+  const isNoNotes = () => Object.keys(props.notes).length === 0;
 
-  render() {
-    if (this.props.notesFetched === false) {
+  const renderContent = () => {
+    if (props.notesFetched === false) {
+      return <Loader />;
+    }
+
+    if (props.notesFetched === true && isNoNotes()) {
       return (
-        <Notes>
-          <Row>
-            <Heading>Notes</Heading>
-            <AddNoteButton
-              onClick={
-                this.props.isMobile
-                  ? this.createNewNoteMobile
-                  : this.createNewNote
-              }
-            >
-              <PlusIcon />
-            </AddNoteButton>
-            <DeleteAllNotes onClick={this.showConfirmModal}>
-              Delete All
-            </DeleteAllNotes>
-            <Line />
-          </Row>
-          <Loader />
-        </Notes>
-      );
-    }
-
-    if (this.props.notesFetched === true && this.isNoNotes()) {
-      return (
-        <Notes>
-          <Row>
-            <Heading>Notes</Heading>
-            <AddNoteButton
-              onClick={
-                this.props.isMobile
-                  ? this.createNewNoteMobile
-                  : this.createNewNote
-              }
-            >
-              <PlusIcon />
-            </AddNoteButton>
-            <DeleteAllNotes onClick={this.showConfirmModal}>
-              Delete All
-            </DeleteAllNotes>
-            <Line />
-          </Row>
-          <NoNotesMessage>You don't have any notes yet.</NoNotesMessage>
-        </Notes>
+        <NoNotesMessage style={fadeZoom}>
+          You don't have any notes yet.
+        </NoNotesMessage>
       );
     }
 
     return (
-      <Notes>
-        {this.state.showModal ? (
-          <Modal>
-            <StyledDiv onClick={this.closeConfirmModal}>
-              <Box onClick={e => e.stopPropagation()}>
-                <StyledH2>
-                  Are you sure you want to delete all of your notes?
-                </StyledH2>
-                <StyledButtons>
-                  <StyledConfirmButton
-                    type="button"
-                    onClick={this.handleConfirmButton}
-                  >
-                    {!this.state.showLoader ? (
-                      'Confirm'
-                    ) : (
-                      <ButtonLoader className="spinning-loader" />
-                    )}
-                  </StyledConfirmButton>
-                  <StyledCancelButton
-                    type="button"
-                    onClick={this.closeConfirmModal}
-                  >
-                    Cancel
-                  </StyledCancelButton>
-                </StyledButtons>
-              </Box>
-            </StyledDiv>
-          </Modal>
-        ) : null}
-        <Row>
-          <Heading>Notes</Heading>
-          <AddNoteButton
-            onClick={
-              this.props.isMobile
-                ? this.createNewNoteMobile
-                : this.createNewNote
-            }
-          >
-            <PlusIcon />
-          </AddNoteButton>
-          <DeleteAllNotes onClick={this.showConfirmModal}>
-            Delete All
-          </DeleteAllNotes>
-          <Line />
-        </Row>
-        <List>
-          {_.values(this.props.notes).map(note => (
-            <Note
-              key={note.id}
-              id={note.id}
-              noteTitle={note.title}
-              noteContent={note.note}
-              deleteNote={this.deleteNote}
-              isMobile={this.props.isMobile}
-              showMenu={this.props.showMenu}
-            />
-          ))}
-        </List>
-      </Notes>
+      <List>
+        {_.values(props.notes).map(note => (
+          <Note
+            key={note.id}
+            id={note.id}
+            noteTitle={note.title}
+            noteContent={note.note}
+            deleteNote={deleteNote}
+            isMobile={props.isMobile}
+            showMenu={props.showMenu}
+          />
+        ))}
+      </List>
     );
-  }
-}
+  };
+
+  const renderModal = () => (
+    <Modal>
+      <StyledDiv onClick={closeConfirmModal}>
+        <Box onClick={e => e.stopPropagation()}>
+          <StyledH2>
+            Are you sure you want to delete all of your notes?
+          </StyledH2>
+          <StyledButtons>
+            <StyledConfirmButton type="button" onClick={handleConfirmButton}>
+              {!showLoader ? (
+                'Confirm'
+              ) : (
+                <ButtonLoader className="spinning-loader" />
+              )}
+            </StyledConfirmButton>
+            <StyledCancelButton type="button" onClick={closeConfirmModal}>
+              Cancel
+            </StyledCancelButton>
+          </StyledButtons>
+        </Box>
+      </StyledDiv>
+    </Modal>
+  );
+
+  return (
+    <Notes>
+      {showModal ? renderModal() : null}
+      <Row>
+        <Heading>Notes</Heading>
+        <AddNoteButton
+          style={fade}
+          onClick={props.isMobile ? createNewNoteMobile : createNewNote}
+        >
+          <PlusIcon />
+        </AddNoteButton>
+        <DeleteAllNotes style={fade} onClick={showConfirmModal}>
+          Delete All
+        </DeleteAllNotes>
+        <Line />
+      </Row>
+      {renderContent()}
+    </Notes>
+  );
+};
 
 NotesList.propTypes = {
   fetchNotes: PropTypes.func,
