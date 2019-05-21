@@ -39,12 +39,12 @@ const StyledFooter = styled(animated.div)`
 `;
 
 const Footer = () => {
-  const slide = useSpring({
+  const fade = useSpring({
     from: { opacity: 0 },
     to: { opacity: 1 },
   });
 
-  return <StyledFooter style={slide}>&copy; Mateusz Lesiuk</StyledFooter>;
+  return <StyledFooter style={fade}>&copy; Mateusz Lesiuk</StyledFooter>;
 };
 
 export default Footer;
