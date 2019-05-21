@@ -466,9 +466,11 @@ const NotesList = props => {
   const [showModal, setShowModal] = useState(false);
   const [showLoader, setShowLoader] = useState(false);
 
+  /* eslint-disable */
   useEffect(() => {
     props.fetchNotes();
-  }, [props]);
+  }, []);
+  /* eslint-enable */
 
   const fade = useSpring({
     config: { duration: 500 },
@@ -522,91 +524,20 @@ const NotesList = props => {
 
   const isNoNotes = () => Object.keys(props.notes).length === 0;
 
-  if (props.notesFetched === false) {
-    return (
-      <Notes>
-        <Row>
-          <Heading>Notes</Heading>
-          <AddNoteButton
-            style={fade}
-            onClick={props.isMobile ? createNewNoteMobile : createNewNote}
-          >
-            <PlusIcon />
-          </AddNoteButton>
-          <DeleteAllNotes style={fade} onClick={showConfirmModal}>
-            Delete All
-          </DeleteAllNotes>
-          <Line />
-        </Row>
-        <Loader />
-      </Notes>
-    );
-  }
+  const renderContent = () => {
+    if (props.notesFetched === false) {
+      return <Loader />;
+    }
 
-  if (props.notesFetched === true && isNoNotes()) {
-    return (
-      <Notes>
-        <Row>
-          <Heading>Notes</Heading>
-          <AddNoteButton
-            style={fade}
-            onClick={props.isMobile ? createNewNoteMobile : createNewNote}
-          >
-            <PlusIcon />
-          </AddNoteButton>
-          <DeleteAllNotes style={fade} onClick={showConfirmModal}>
-            Delete All
-          </DeleteAllNotes>
-          <Line />
-        </Row>
+    if (props.notesFetched === true && isNoNotes()) {
+      return (
         <NoNotesMessage style={fadeZoom}>
           You don't have any notes yet.
         </NoNotesMessage>
-      </Notes>
-    );
-  }
+      );
+    }
 
-  return (
-    <Notes>
-      {showModal ? (
-        <Modal>
-          <StyledDiv onClick={closeConfirmModal}>
-            <Box onClick={e => e.stopPropagation()}>
-              <StyledH2>
-                Are you sure you want to delete all of your notes?
-              </StyledH2>
-              <StyledButtons>
-                <StyledConfirmButton
-                  type="button"
-                  onClick={handleConfirmButton}
-                >
-                  {!showLoader ? (
-                    'Confirm'
-                  ) : (
-                    <ButtonLoader className="spinning-loader" />
-                  )}
-                </StyledConfirmButton>
-                <StyledCancelButton type="button" onClick={closeConfirmModal}>
-                  Cancel
-                </StyledCancelButton>
-              </StyledButtons>
-            </Box>
-          </StyledDiv>
-        </Modal>
-      ) : null}
-      <Row>
-        <Heading>Notes</Heading>
-        <AddNoteButton
-          style={fade}
-          onClick={props.isMobile ? createNewNoteMobile : createNewNote}
-        >
-          <PlusIcon />
-        </AddNoteButton>
-        <DeleteAllNotes style={fade} onClick={showConfirmModal}>
-          Delete All
-        </DeleteAllNotes>
-        <Line />
-      </Row>
+    return (
       <List>
         {_.values(props.notes).map(note => (
           <Note
@@ -620,6 +551,50 @@ const NotesList = props => {
           />
         ))}
       </List>
+    );
+  };
+
+  const renderModal = () => (
+    <Modal>
+      <StyledDiv onClick={closeConfirmModal}>
+        <Box onClick={e => e.stopPropagation()}>
+          <StyledH2>
+            Are you sure you want to delete all of your notes?
+          </StyledH2>
+          <StyledButtons>
+            <StyledConfirmButton type="button" onClick={handleConfirmButton}>
+              {!showLoader ? (
+                'Confirm'
+              ) : (
+                <ButtonLoader className="spinning-loader" />
+              )}
+            </StyledConfirmButton>
+            <StyledCancelButton type="button" onClick={closeConfirmModal}>
+              Cancel
+            </StyledCancelButton>
+          </StyledButtons>
+        </Box>
+      </StyledDiv>
+    </Modal>
+  );
+
+  return (
+    <Notes>
+      {showModal ? renderModal() : null}
+      <Row>
+        <Heading>Notes</Heading>
+        <AddNoteButton
+          style={fade}
+          onClick={props.isMobile ? createNewNoteMobile : createNewNote}
+        >
+          <PlusIcon />
+        </AddNoteButton>
+        <DeleteAllNotes style={fade} onClick={showConfirmModal}>
+          Delete All
+        </DeleteAllNotes>
+        <Line />
+      </Row>
+      {renderContent()}
     </Notes>
   );
 };
