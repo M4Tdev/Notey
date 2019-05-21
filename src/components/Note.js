@@ -4,6 +4,7 @@ import { TrashAlt } from 'styled-icons/fa-regular';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { useSpring, animated } from 'react-spring';
 
 import history from '../history';
 
@@ -11,7 +12,7 @@ import { clearSelectedNote } from '../actions';
 
 import '../css/spinningLoader.scss';
 
-const Container = styled.li`
+const Container = styled(animated.li)`
   position: relative;
   padding: 1.5rem;
   cursor: pointer;
@@ -135,6 +136,13 @@ const DeletingSpinner = styled.div`
 
 const Note = props => {
   const [isDeleting, setDeleting] = useState(false);
+
+  const slide = useSpring({
+    config: { duration: 250 },
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+  });
+
   // Function runs delete note function from parent and passes to it event and note id
   const deleteNote = e => {
     setDeleting(true);
@@ -154,7 +162,7 @@ const Note = props => {
   };
 
   return (
-    <Container onClick={props.isMobile ? handleMobile : loadNote}>
+    <Container style={slide} onClick={props.isMobile ? handleMobile : loadNote}>
       {isDeleting ? (
         <DeletingSpinner className="spinning-loader" />
       ) : (
