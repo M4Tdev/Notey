@@ -147,8 +147,8 @@ const SignOutIcon = styled(SignOutAlt)`
 const TopBar = props => {
   const slideDown = useSpring({
     config: { duration: 500 },
-    from: { marginTop: '-6rem', opacity: 0 },
-    to: { marginTop: '0', opacity: 1 },
+    from: { transform: 'translateY(-6rem)', opacity: 0 },
+    to: { transform: 'translateY(0)', opacity: 1 },
   });
 
   return (
