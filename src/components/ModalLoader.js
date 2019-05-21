@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import styled from 'styled-components';
+import { useSpring, animated } from 'react-spring';
 
 import '../css/loadingSpinner.scss';
 
-const Container = styled.div`
+const Container = styled(animated.div)`
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -12,9 +13,15 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-const ModalLoader = () =>
-  ReactDOM.createPortal(
-    <Container>
+const ModalLoader = () => {
+  const fade = useSpring({
+    config: { duration: 250 },
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+  });
+
+  return ReactDOM.createPortal(
+    <Container style={fade}>
       <div className="spinner">
         <div className="rect1" />
         <div className="rect2" />
@@ -25,5 +32,6 @@ const ModalLoader = () =>
     </Container>,
     document.querySelector('#modal-root')
   );
+};
 
 export default ModalLoader;

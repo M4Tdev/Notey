@@ -10,10 +10,9 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-const Loader = props => (
+const Loader = () => (
   <Container>
     <div className="loader" />
   </Container>
 );
-
 export default Loader;

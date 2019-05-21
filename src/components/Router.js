@@ -39,6 +39,7 @@ const Router = ({ signIn, signOut, isSignedIn, clearNotes }) => {
 Router.propTypes = {
   signIn: PropTypes.func.isRequired,
   signOut: PropTypes.func.isRequired,
+  clearNotes: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

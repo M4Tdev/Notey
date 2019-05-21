@@ -2,11 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { Google } from 'styled-icons/fa-brands';
 import firebase from 'firebase/app';
+import PropTypes from 'prop-types';
+import { useSpring, animated } from 'react-spring';
 import base from '../base';
 
 import ModalLoader from './ModalLoader';
 
-const Container = styled.div`
+const Container = styled(animated.div)`
   width: 100vw;
   height: 100vh;
   display: flex;
@@ -15,18 +17,18 @@ const Container = styled.div`
   align-items: center;
 `;
 
-const Heading = styled.h1`
+const Heading = styled(animated.h1)`
   font-weight: bold;
   font-size: 4.6rem;
   letter-spacing: 0.2em;
-  color: #5b5b5b;
+  color: var(--color-grey);
 `;
 
-const Button = styled.button`
-  background-color: #4285f4;
+const Button = styled(animated.button)`
+  background-color: var(--color-main);
   border-radius: 1rem;
   border: none;
-  color: #fff;
+  color: var(--color-white);
   padding: 1.5rem 4.5rem;
   margin: 11.2rem 0;
   position: relative;
@@ -50,18 +52,41 @@ const onSignIn = () => {
 };
 
 const Login = props => {
+  const fade = useSpring({
+    config: { duration: 250 },
+    from: { opacity: 0 },
+    to: { opacity: 1 },
+  });
+
+  const leftSlide = useSpring({
+    config: { duration: 550 },
+    from: { transform: 'translateX(-10rem)', opacity: 0 },
+    to: { transform: 'translateX(0)', opacity: 1 },
+  });
+
+  const rightSlide = useSpring({
+    config: { duration: 550 },
+    from: { transform: 'translateX(10rem)', opacity: 0 },
+    to: { transform: 'translateX(0)', opacity: 1 },
+  });
+
   if (props.isSignedIn === null) {
     return <ModalLoader />;
   }
+
   return (
-    <Container>
-      <Heading>Notey</Heading>
-      <Button onClick={onSignIn}>
+    <Container style={fade}>
+      <Heading style={leftSlide}>Notey</Heading>
+      <Button style={rightSlide} onClick={onSignIn}>
         <GoogleIcon />
         Login with Google
       </Button>
     </Container>
   );
+};
+
+Login.propTypes = {
+  isSignedIn: PropTypes.bool,
 };
 
 export default Login;

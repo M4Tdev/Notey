@@ -21,16 +21,19 @@
     "prettier": "^1.16.4",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
+    "react-burger-menu": "^2.6.10",
     "react-dom": "^16.8.6",
     "react-redux": "^6.0.1",
     "react-router-dom": "^5.0.0",
     "react-scripts": "2.1.8",
+    "react-spring": "^8.0.20",
     "redux": "^4.0.1",
     "redux-form": "^8.1.0",
     "redux-thunk": "^2.3.0",
     "styled-components": "^4.2.0",
     "styled-icons": "^7.9.0",
-    "time-stamp": "^2.2.0"
+    "time-stamp": "^2.2.0",
+    "uniqid": "^5.0.3"
   },
   "scripts": {
     "start": "react-scripts start",
