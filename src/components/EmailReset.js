@@ -138,25 +138,27 @@ const EmailReset = () => {
     history.goBack();
   };
 
+  const goToLoginPage = () => {
+    history.push('/email-login');
+  };
+
   const resetPassword = email => {
-    console.log('Reset password for: ', email);
     base
       .auth()
       .sendPasswordResetEmail(email)
       .then(() => {
-        console.log('Email sent');
+        // console.log('Email sent');
         setEmailStatus(
           <>
             <span className="sent">Email sent</span>{' '}
-            <GoToLoginPageButton type="button" onClick={onGoBack}>
+            <GoToLoginPageButton type="button" onClick={goToLoginPage}>
               Go to login page
             </GoToLoginPageButton>
           </>
         );
-        // history.push('/email-login');
       })
       .catch(err => {
-        console.log('Something went wrong', err.message);
+        // console.log('Something went wrong', err.message);
         setEmailStatus(<span className="error">{err.message}</span>);
       });
   };

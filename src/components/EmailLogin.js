@@ -8,14 +8,13 @@ import base from '../base';
 const EmailLogin = props => {
   const [errorMessage, setErrorMessage] = useState(null);
   const onSignIn = values => {
-    console.log('Login by:', JSON.stringify(values, null, 2));
     base
       .auth()
       .signInWithEmailAndPassword(values.email, values.password)
       .catch(err => {
         const errCode = err.code;
         const errMessage = err.message;
-        console.log(errCode, errMessage);
+        // console.log(errCode, errMessage);
         setErrorMessage(errMessage);
       });
   };

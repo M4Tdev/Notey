@@ -8,14 +8,13 @@ import base from '../base';
 const EmailRegister = props => {
   const [errorMessage, setErrorMessage] = useState(null);
   const onRegister = values => {
-    console.log('Register by:', JSON.stringify(values, null, 2));
     base
       .auth()
       .createUserWithEmailAndPassword(values.email, values.password)
       .catch(err => {
         const errCode = err.code;
         const errMessage = err.message;
-        console.log(errCode, errMessage);
+        // console.log(errCode, errMessage);
         setErrorMessage(errMessage);
       });
   };
