@@ -11,6 +11,9 @@ import history from '../history';
 import ModalLoader from './ModalLoader';
 import App from './App';
 import Login from './Login';
+import EmailLogin from './EmailLogin';
+import EmailRegister from './EmailRegister';
+import EmailReset from './EmailReset';
 
 // Hooks
 import useAuth from '../hooks/useAuth';
@@ -26,6 +29,23 @@ const Router = ({ signIn, signOut, isSignedIn, clearNotes }) => {
           path="/login"
           exact
           render={props => <Login {...props} isSignedIn={isSignedIn} />}
+        />
+        <Route
+          path="/email-login"
+          exact
+          component={props => <EmailLogin {...props} isSignedIn={isSignedIn} />}
+        />
+        <Route
+          path="/email-register"
+          exact
+          component={props => (
+            <EmailRegister {...props} isSignedIn={isSignedIn} />
+          )}
+        />
+        <Route
+          path="/email-reset"
+          exact
+          render={props => <EmailReset {...props} isSignedIn={isSignedIn} />}
         />
         <Route
           path="/notes"

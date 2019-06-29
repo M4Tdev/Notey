@@ -5,6 +5,7 @@ import firebase from 'firebase/app';
 import PropTypes from 'prop-types';
 import { useSpring, animated } from 'react-spring';
 import base from '../base';
+import history from '../history';
 
 import ModalLoader from './ModalLoader';
 
@@ -25,16 +26,21 @@ const Heading = styled(animated.h1)`
 `;
 
 const Button = styled(animated.button)`
-  background-color: var(--color-main);
+  background-color: ${({ provider }) =>
+    provider === 'google' ? 'var(--color-main)' : 'var(--color-grey)'};
   border-radius: 1rem;
   border: none;
   color: var(--color-white);
   padding: 1.5rem 4.5rem;
-  margin: 11.2rem 0;
+  margin: 11.2rem 0 0;
   position: relative;
   text-align: center;
   font-weight: 400;
   font-size: 2rem;
+
+  &:last-child {
+    margin: 3rem 0 11.2rem;
+  }
 `;
 
 const GoogleIcon = styled(Google)`
@@ -45,10 +51,14 @@ const GoogleIcon = styled(Google)`
   width: 3rem;
 `;
 
-const onSignIn = () => {
-  const provider = new firebase.auth.GoogleAuthProvider();
+const googleOnSignIn = () => {
+  const googleProvider = new firebase.auth.GoogleAuthProvider();
 
-  base.auth().signInWithPopup(provider);
+  base.auth().signInWithPopup(googleProvider);
+};
+
+const emailOnSignIn = () => {
+  history.push('/email-login');
 };
 
 const Login = props => {
@@ -77,9 +87,12 @@ const Login = props => {
   return (
     <Container style={fade}>
       <Heading style={leftSlide}>Notey</Heading>
-      <Button style={rightSlide} onClick={onSignIn}>
+      <Button style={rightSlide} onClick={googleOnSignIn} provider="google">
         <GoogleIcon />
         Login with Google
+      </Button>
+      <Button style={rightSlide} onClick={emailOnSignIn} provider="email">
+        Login with Email
       </Button>
     </Container>
   );
