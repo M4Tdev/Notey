@@ -27,7 +27,7 @@ const EmailLogin = ({ isSignedIn }) => {
     history.push('/email-reset');
   };
 
-  if (props.isSignedIn === null) {
+  if (isSignedIn === null) {
     return <ModalLoader />;
   }
 
