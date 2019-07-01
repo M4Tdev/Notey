@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import history from '../history';
 
 import ModalLoader from './ModalLoader';
 import EmailForm from './EmailForm';
 import base from '../base';
 
-const EmailRegister = props => {
+const EmailRegister = ({ isSignedIn }) => {
   const [errorMessage, setErrorMessage] = useState(null);
   const onRegister = values => {
     base
@@ -22,7 +23,7 @@ const EmailRegister = props => {
     history.push('/email-login');
   };
 
-  if (props.isSignedIn === null) {
+  if (isSignedIn === null) {
     return <ModalLoader />;
   }
 
@@ -36,6 +37,10 @@ const EmailRegister = props => {
       />
     </div>
   );
+};
+
+EmailRegister.propTypes = {
+  isSignedIn: PropTypes.bool,
 };
 
 export default EmailRegister;

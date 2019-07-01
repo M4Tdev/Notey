@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import history from '../history';
 
 import ModalLoader from './ModalLoader';
 import EmailForm from './EmailForm';
 import base from '../base';
 
-const EmailLogin = props => {
+const EmailLogin = ({ isSignedIn }) => {
   const [errorMessage, setErrorMessage] = useState(null);
   const onSignIn = values => {
     base
@@ -41,6 +42,10 @@ const EmailLogin = props => {
       />
     </div>
   );
+};
+
+EmailLogin.propTypes = {
+  isSignedIn: PropTypes.bool,
 };
 
 export default EmailLogin;

@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Formik } from 'formik';
+import PropTypes from 'prop-types';
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -186,24 +187,30 @@ const StyledActionSwitch = styled.button`
   }
 `;
 
-const EmailForm = props => {
+const EmailForm = ({
+  action,
+  switchToLogin,
+  switchToRegister,
+  errorMessage,
+  onSubmit,
+  onForgotPassword,
+}) => {
   const switchAction = () => {
-    if (props.action === 'register') {
-      props.switchToLogin();
+    if (action === 'register') {
+      switchToLogin();
     }
 
-    if (props.action === 'login') {
-      props.switchToRegister();
+    if (action === 'login') {
+      switchToRegister();
     }
   };
 
   return (
     <Wrapper>
       <StyledHeader>
-        {props.action === 'register' ? 'Register' : 'Login'} with Email and
-        Password
+        {action === 'register' ? 'Register' : 'Login'} with Email and Password
       </StyledHeader>
-      <AuthError>{props.errorMessage}</AuthError>
+      <AuthError>{errorMessage}</AuthError>
       <Formik
         initialValues={{ email: '', password: '' }}
         validate={values => {
@@ -223,7 +230,7 @@ const EmailForm = props => {
           return errors;
         }}
         onSubmit={(values, { setSubmitting }) => {
-          props.onSubmit(values);
+          onSubmit(values);
           setSubmitting(false);
         }}
       >
@@ -273,25 +280,25 @@ const EmailForm = props => {
               <StyledError>
                 {errors.password && touched.password && errors.password}
               </StyledError>
-              {props.action === 'login' ? (
+              {action === 'login' ? (
                 <ForgotPassword>
                   Forgot password?{' '}
-                  <button type="button" onClick={props.onForgotPassword}>
+                  <button type="button" onClick={onForgotPassword}>
                     Reset
                   </button>
                 </ForgotPassword>
               ) : null}
             </FormItem>
             <StyledButton type="submit" disabled={isSubmitting}>
-              {props.action === 'register' ? 'Register' : 'Login'}
+              {action === 'register' ? 'Register' : 'Login'}
             </StyledButton>
             <ChangeActionDiv>
               <span>
-                {props.action === 'register'
+                {action === 'register'
                   ? 'Already have an account? '
                   : "Don't have an account? "}
                 <StyledActionSwitch type="button" onClick={switchAction}>
-                  {props.action === 'register' ? 'Log In' : 'Register'}
+                  {action === 'register' ? 'Log In' : 'Register'}
                 </StyledActionSwitch>
               </span>
             </ChangeActionDiv>
@@ -300,6 +307,15 @@ const EmailForm = props => {
       </Formik>
     </Wrapper>
   );
+};
+
+EmailForm.propTypes = {
+  action: PropTypes.string,
+  switchToLogin: PropTypes.func,
+  switchToRegister: PropTypes.func,
+  errorMessage: PropTypes.string,
+  onSubmit: PropTypes.func,
+  onForgotPassword: PropTypes.func,
 };
 
 export default EmailForm;
