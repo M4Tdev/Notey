@@ -12,7 +12,6 @@ const EmailLogin = props => {
       .auth()
       .signInWithEmailAndPassword(values.email, values.password)
       .catch(err => {
-        const errCode = err.code;
         const errMessage = err.message;
         // console.log(errCode, errMessage);
         setErrorMessage(errMessage);

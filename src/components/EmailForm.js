@@ -15,16 +15,62 @@ const StyledHeader = styled.h1`
   color: var(--color-grey);
   font-size: 3rem;
   margin-bottom: 2rem;
+
+  @media ${({ theme }) => theme.mediaQueries.large} {
+    text-align: center;
+    margin: 0 1rem 2rem;
+  }
+
+  @media ${({ theme }) => theme.mediaQueries.medium} {
+    text-align: center;
+    font-size: 2.8rem;
+    margin: 0 1rem 2rem;
+  }
+
+  @media ${({ theme }) => theme.mediaQueries.small} {
+    text-align: center;
+    font-size: 2.4rem;
+    margin: 0 1rem 2rem;
+  }
+
+  @media ${({ theme }) => theme.mediaQueries.smallest} {
+    text-align: center;
+    font-size: 2.4rem;
+  }
 `;
 
 const AuthError = styled.div`
   text-align: center;
   color: red;
   margin-bottom: 5rem;
+
+  @media ${({ theme }) => theme.mediaQueries.small} {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 3rem;
+  }
+
+  @media ${({ theme }) => theme.mediaQueries.smallest} {
+    margin-left: 1rem;
+    margin-right: 1rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 const StyledForm = styled.form`
   width: 30rem;
+
+  @media ${({ theme }) => theme.mediaQueries.medium} {
+    width: 35rem;
+  }
+
+  @media ${({ theme }) => theme.mediaQueries.small} {
+    width: 80%;
+  }
+
+  @media ${({ theme }) => theme.mediaQueries.smallest} {
+    width: 90%;
+  }
 `;
 
 const FormItem = styled.div`
@@ -79,6 +125,7 @@ const StyledError = styled.span`
   font-size: 1.2rem;
   min-height: 1.5rem;
   display: block;
+  margin-left: 0.5rem;
 `;
 
 const ForgotPassword = styled.div`
@@ -94,6 +141,10 @@ const ForgotPassword = styled.div`
       border-bottom-color: black;
     }
   }
+
+  @media ${({ theme }) => theme.mediaQueries.medium} {
+    text-align: center;
+  }
 `;
 
 const StyledButton = styled.button`
@@ -108,11 +159,20 @@ const StyledButton = styled.button`
   &:hover {
     transform: translateY(-0.3rem);
   }
+
+  @media ${({ theme }) => theme.mediaQueries.medium} {
+    margin: 2rem auto 0;
+    display: block;
+  }
 `;
 
 const ChangeActionDiv = styled.div`
   text-align: center;
   margin-top: 2rem;
+
+  @media ${({ theme }) => theme.mediaQueries.medium} {
+    margin-top: 3rem;
+  }
 `;
 
 const StyledActionSwitch = styled.button`
