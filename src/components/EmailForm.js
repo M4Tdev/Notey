@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Formik } from 'formik';
 import PropTypes from 'prop-types';
+import { InfoCircle } from 'styled-icons/fa-solid';
+import { useSpring, animated } from 'react-spring';
 
 const Wrapper = styled.div`
   width: 100vw;
@@ -129,6 +131,12 @@ const StyledError = styled.span`
   margin-left: 0.5rem;
 `;
 
+const FlexSection = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
 const ForgotPassword = styled.div`
   margin-bottom: 0.5rem;
 
@@ -145,6 +153,82 @@ const ForgotPassword = styled.div`
 
   @media ${({ theme }) => theme.mediaQueries.medium} {
     text-align: center;
+  }
+`;
+
+const Info = styled.div`
+  margin-right: 1rem;
+  position: relative;
+  overflow-x: visible;
+
+  & label {
+    cursor: pointer;
+  }
+
+  & input {
+    display: none;
+  }
+`;
+
+const StyledInfoCircle = styled(InfoCircle)`
+  height: 1.8rem;
+  width: auto;
+  color: ${props =>
+    props.toggle ? 'rgba(0, 0, 0, 0.2)' : 'rgba(0, 0, 0, 0.7)'};
+`;
+
+const InfoContent = styled(animated.div)`
+  position: absolute;
+  top: 0;
+  left: 100%;
+  margin-top: 0.1rem;
+  margin-left: 0.5rem;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  border: 0.1rem solid rgba(0, 0, 0, 0.4);
+  cursor: default;
+  min-width: 18rem;
+  font-size: 1.2rem;
+  background-color: white;
+
+  & h4 {
+    margin: 0 0 0.3rem 0;
+    text-align: center;
+  }
+
+  & p {
+    margin: 0.2rem 0.3rem;
+  }
+
+  & span.boldText {
+    font-weight: 700;
+    display: block;
+  }
+
+  @media ${({ theme }) => theme.mediaQueries.medium} {
+    top: 100%;
+    left: -200%;
+    margin-top: 0.5rem;
+    margin-left: 0;
+  }
+
+  @media ${({ theme }) => theme.mediaQueries.small} {
+    top: 100%;
+    left: unset !important;
+    right: -200%;
+    margin-top: 0.5rem;
+    margin-left: 0;
+    z-index: 10;
+  }
+
+  @media ${({ theme }) => theme.mediaQueries.smallest} {
+    top: 100%;
+    right: -120%;
+    margin-top: 0.5rem;
+    margin-left: 0;
+    z-index: 10;
   }
 `;
 
@@ -204,6 +288,13 @@ const EmailForm = ({
       switchToRegister();
     }
   };
+
+  const [isInfoToggled, setInfoToggled] = useState(false);
+
+  const fadeInOut = useSpring({
+    display: isInfoToggled ? 'flex' : 'none',
+    opacity: isInfoToggled ? 1 : 0,
+  });
 
   return (
     <Wrapper>
@@ -280,15 +371,40 @@ const EmailForm = ({
               <StyledError>
                 {errors.password && touched.password && errors.password}
               </StyledError>
-              {action === 'login' ? (
-                <ForgotPassword>
-                  Forgot password?{' '}
-                  <button type="button" onClick={onForgotPassword}>
-                    Reset
-                  </button>
-                </ForgotPassword>
-              ) : null}
             </FormItem>
+            <div>
+              {action === 'login' ? (
+                <FlexSection>
+                  <ForgotPassword>
+                    Forgot password?{' '}
+                    <button type="button" onClick={onForgotPassword}>
+                      Reset
+                    </button>
+                  </ForgotPassword>
+                  <Info>
+                    <label htmlFor="infoToggle">
+                      <StyledInfoCircle toggle={isInfoToggled} />
+                    </label>
+                    <input
+                      type="checkbox"
+                      className="infoToggle"
+                      id="infoToggle"
+                      onClick={() => setInfoToggled(!isInfoToggled)}
+                    />
+                    <InfoContent style={fadeInOut}>
+                      <h4>Test account credentials</h4>
+                      <p>
+                        <span className="boldText">Email:</span>{' '}
+                        test@mateuszlesiuk.dev
+                      </p>
+                      <p>
+                        <span className="boldText">Password:</span> 12345678
+                      </p>
+                    </InfoContent>
+                  </Info>
+                </FlexSection>
+              ) : null}
+            </div>
             <StyledButton type="submit" disabled={isSubmitting}>
               {action === 'register' ? 'Register' : 'Login'}
             </StyledButton>
