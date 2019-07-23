@@ -60,6 +60,8 @@ const NoteContent = styled.p`
   font-size: 1.5rem;
   margin-left: 0.5rem;
   font-weight: 400;
+  max-width: 85%;
+  word-wrap: break-word;
 
   @media ${props => props.theme.mediaQueries.largest} {
     font-size: 1.5rem;
