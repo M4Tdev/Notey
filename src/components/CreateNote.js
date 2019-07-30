@@ -36,7 +36,7 @@ const CreateNote = props => {
   return (
     <StyledDiv>
       {showLoader ? <StyledLoader className="spinning-loader" /> : ''}
-      <Form onSubmit={onSubmit} />
+      <Form onSubmit={onSubmit} initialValues={{ title: '', note: '' }} />
     </StyledDiv>
   );
 };
