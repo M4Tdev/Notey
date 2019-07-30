@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
-import { Field, reduxForm } from 'redux-form';
+import { Formik } from 'formik';
 import _ from 'lodash';
 
 // Components
@@ -173,7 +173,7 @@ const TextArea = styled.textarea`
   }
 `;
 
-const ErrorMessage = styled.span`
+const StyledErrorMessage = styled.span`
   position: absolute;
   left: 50%;
   bottom: -2rem;
@@ -249,67 +249,92 @@ const Buttons = styled.div`
   }
 `;
 
-class Form extends React.Component {
-  onSubmit = formValues => {
-    this.props.onSubmit(formValues);
-    this.props.reset();
-  };
+const FormComponent = props => {
+  const formRef = useRef(null);
 
-  required = value => (value ? undefined : 'Required');
+  return (
+    <div>
+      <Formik
+        initialValues={{
+          title: props.initialValues.title,
+          note: props.initialValues.note,
+        }}
+        validate={values => {
+          const errors = {};
+          if (!values.title.trim()) {
+            errors.title = 'Required';
+          }
 
-  renderField = ({ input, placeholder, type, name, meta }) => (
-    <FieldContainer>
-      {input.name === 'title' ? (
-        <Input
-          {...input}
-          placeholder={placeholder}
-          name={name}
-          type={type}
-          data-error={!!(meta.touched && meta.error)}
-        />
-      ) : (
-        <TextArea
-          {...input}
-          placeholder={placeholder}
-          name={name}
-          data-error={!!(meta.touched && meta.error)}
-        />
-      )}
-      {meta.touched &&
-        (meta.error && <ErrorMessage>{meta.error}</ErrorMessage>)}
-    </FieldContainer>
+          if (!values.note.trim()) {
+            errors.note = 'Required';
+          }
+
+          return errors;
+        }}
+        onSubmit={(values, { setSubmitting }) => {
+          props.onSubmit(values);
+          setSubmitting(false);
+          formRef.current.reset();
+        }}
+      >
+        {({
+          values,
+          errors,
+          touched,
+          handleChange,
+          handleBlur,
+          handleSubmit,
+          handleReset,
+          isSubmitting,
+        }) => (
+          <StyledForm
+            onReset={handleReset}
+            onSubmit={handleSubmit}
+            ref={formRef}
+          >
+            <FieldContainer>
+              <Input
+                type="text"
+                name="title"
+                placeholder="Title"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.title}
+              />
+              <StyledErrorMessage>
+                {errors.title && touched.title && errors.title}
+              </StyledErrorMessage>
+            </FieldContainer>
+            <FieldContainer>
+              <TextArea
+                name="note"
+                placeholder="Note"
+                onChange={handleChange}
+                onBlur={handleBlur}
+                value={values.note}
+              />
+              <StyledErrorMessage>
+                {errors.note && touched.note && errors.note}
+              </StyledErrorMessage>
+            </FieldContainer>
+            <Buttons>
+              <Button
+                btnType="submit"
+                content="Save"
+                bgColor="primary"
+                disabled={isSubmitting}
+              />
+              {_.has(props.initialValues, 'id') ? (
+                <Button content="Delete" onNoteDelete={props.onNoteDelete} />
+              ) : (
+                ''
+              )}
+            </Buttons>
+          </StyledForm>
+        )}
+      </Formik>
+    </div>
   );
+};
 
-  render() {
-    return (
-      <StyledForm onSubmit={this.props.handleSubmit(this.onSubmit)}>
-        <Field
-          name="title"
-          type="text"
-          placeholder="Title"
-          component={this.renderField}
-          validate={this.required}
-        />
-        <Field
-          name="note"
-          placeholder="Note"
-          component={this.renderField}
-          validate={this.required}
-        />
-        <Buttons>
-          <Button btnType="submit" content="Save" bgColor="primary" />
-          {_.has(this.props.initialValues, 'id') ? (
-            <Button content="Delete" onNoteDelete={this.props.onNoteDelete} />
-          ) : (
-            ''
-          )}
-        </Buttons>
-      </StyledForm>
-    );
-  }
-}
-
-export default reduxForm({
-  form: 'editor',
-  enableReinitialize: true,
-})(Form);
+export default FormComponent;
