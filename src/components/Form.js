@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { Formik } from 'formik';
 import _ from 'lodash';
+import PropTypes from 'prop-types';
 
 // Components
 import Button from './Button';
@@ -255,6 +256,7 @@ const FormComponent = props => {
   return (
     <div>
       <Formik
+        enableReinitialize="true"
         initialValues={{
           title: props.initialValues.title,
           note: props.initialValues.note,
@@ -335,6 +337,15 @@ const FormComponent = props => {
       </Formik>
     </div>
   );
+};
+
+FormComponent.propTypes = {
+  initialValues: PropTypes.shape({
+    title: PropTypes.string,
+    note: PropTypes.string,
+  }),
+  onSubmit: PropTypes.func,
+  onNoteDelete: PropTypes.func,
 };
 
 export default FormComponent;

@@ -93,7 +93,7 @@ export const fetchNote = id => async (dispatch, getState) => {
   const note = notes.filter(obj => obj.id === id);
 
   // Create note object with id and filtered note
-  const noteObject = { id, ...note[0] };
+  const noteObject = { ...note[0] };
 
   // Dispatch action
   dispatch({
@@ -164,7 +164,7 @@ export const editNote = (id, formValues) => async (dispatch, getState) => {
   const newArray = [...notes];
 
   // Update note with new values
-  newArray[index] = { ...formValues };
+  newArray[index] = { ...newArray[index], ...formValues };
 
   // Set updated array on server
   await db
