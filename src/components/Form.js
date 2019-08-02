@@ -255,6 +255,7 @@ const FormComponent = props => {
   return (
     <div>
       <Formik
+        enableReinitialize="true"
         initialValues={{
           title: props.initialValues.title,
           note: props.initialValues.note,
