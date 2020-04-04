@@ -1,7 +1,4 @@
 {
-	"engines": {
-		"node": "10.16"
-	},
 	"build": {
 		"env": {
 			"REACT_APP_API_KEY": "@notey_api_key",
