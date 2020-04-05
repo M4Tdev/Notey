@@ -1,0 +1,12 @@
+{
+	"build": {
+		"env": {
+			"REACT_APP_API_KEY": "@notey_api_key",
+			"REACT_APP_AUTH_DOMAIN": "@notey_auth_domain",
+			"REACT_APP_DATABASE_URL": "@notey_database_url",
+			"REACT_APP_MESSAGING_SENDER_ID": "@notey_messaging_sender_id",
+			"REACT_APP_PROJECT_ID": "@notey_project_id",
+			"REACT_APP_STORAGE_BUCKET": "@notey_storage_bucket"
+		}
+	}
+}

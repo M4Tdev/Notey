@@ -4,6 +4,7 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import reduxThunk from 'redux-thunk';
 import { ThemeProvider } from 'styled-components';
+import dotenv from 'dotenv';
 
 import * as Sentry from '@sentry/browser';
 import * as serviceWorker from './serviceWorker';
@@ -12,6 +13,8 @@ import Router from './components/Router';
 import rootReducer from './reducers';
 import GlobalStyles from './utils/global';
 import theme from './utils/theme';
+
+dotenv.config();
 
 Sentry.init({
   dsn: 'https://828857047c774aa9b74844257ce1a203@sentry.io/1443019',
